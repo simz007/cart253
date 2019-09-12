@@ -29,7 +29,7 @@ function setup() {
   ellipseMode(CENTER);
 
   // Draw the head
-  ellipse(250,250,200,200);
+  ellipse(260,260,200,200);
 
 
   // Draw the body
