@@ -15,6 +15,9 @@ let squareX;
 let squareY;
 let squareSize = 100;
 
+// The current position of New Green Cirlce
+let x = 0
+let y = 320
 
 // preload()
 //
@@ -56,6 +59,15 @@ function setup() {
 // Draw the circle and square on screen
 
 function draw() {
+
+// Move New circle from left to right
+    x = x+1;
+// Make the New circle transparent Green
+  fill(0,255,0,10);
+
+// Display New circle
+  ellipse(x,320,50,50);
+
   // We don't fill the background so we get a drawing effect
 
   // Move circle up and to the right
