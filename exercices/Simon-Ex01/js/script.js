@@ -16,8 +16,12 @@ let squareY;
 let squareSize = 100;
 
 // The current position of New Green Cirlce
-let x = 0
-let y = 320
+let x = 0;
+let y = 320;
+
+// The current position of the Yellow Dot following the mouse
+let dotX;
+let dotY;
 
 // preload()
 //
@@ -26,7 +30,6 @@ let y = 320
 function preload() {
 
 }
-
 
 // setup()
 //
@@ -46,10 +49,14 @@ function setup() {
   squareX = width + squareSize/2;
   squareY = height + squareSize/2;
 
+
+
   // We'll draw rectangles from the center
   rectMode(CENTER);
   // We won't have a stroke in this
   noStroke();
+
+
 }
 
 
@@ -60,13 +67,7 @@ function setup() {
 
 function draw() {
 
-// Move New circle from left to right
-    x = x+1;
-// Make the New circle transparent Green
-  fill(0,255,0,10);
 
-// Display New circle
-  ellipse(x,320,50,50);
 
   // We don't fill the background so we get a drawing effect
 
@@ -85,4 +86,23 @@ function draw() {
   fill(0,0,255,10);
   // Display the square
   rect(squareX,squareY,squareSize,squareSize);
+
+
+  // Move New Green circle from left to right
+      x = x+1;
+  // Make the New circle transparent Green
+    fill(0,255,0,10);
+  // Display New circle
+    ellipse(x,y,50,50);
+
+
+  // Make Yellow dot follow the mouse
+  dotX = mouseX;
+  dotY = mouseY;
+  // Make the Dot Yellow
+  fill(255,255,0)
+  // Display the Dot
+  ellipse(dotX,dotY,30,30)
+
+
 }
