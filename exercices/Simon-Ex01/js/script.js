@@ -23,11 +23,25 @@ let y = 320;
 let dotX;
 let dotY;
 
+
+// The current position and size of the purple cube
+let cubeX;
+let cubeY;
+let cubeSize = 70;
+
+// let the image exist
+let exampleImage;
+let imageX;
+let imageY;
+
 // preload()
 //
 // Nothing here
 
 function preload() {
+
+//Load the image of the heart
+  exampleImage = loadImage("assets/images/heart.png");
 
 }
 
@@ -49,13 +63,20 @@ function setup() {
   squareX = width + squareSize/2;
   squareY = height + squareSize/2;
 
+  // Start the Purple cube from bottom center
+  cubeX = 320;
+  cubeY = 640;
 
+    // Start the heart image at those values
+    imageX = 360;
+    imageY = 640;
 
   // We'll draw rectangles from the center
   rectMode(CENTER);
   // We won't have a stroke in this
   noStroke();
 
+  // Display the heart image
 
 }
 
@@ -102,7 +123,20 @@ function draw() {
   // Make the Dot Yellow
   fill(255,255,0)
   // Display the Dot
-  ellipse(dotX,dotY,30,30)
+  ellipse(dotX,dotY,30,30);
 
+
+  // Move Purple cube from bottom centre to Top
+    cubeY -= 1;
+  // Make the  cube purple
+    fill(255,0,255);
+  // Display New Purple Cube
+    rect(cubeX,cubeY,cubeSize,cubeSize);
+
+
+    // Move the  heart from bottom to Top
+    imageY -= 1;
+    // Display the heart image
+    image(exampleImage, imageX, imageY, 60,60);
 
 }
