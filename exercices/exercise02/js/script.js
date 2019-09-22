@@ -1,7 +1,7 @@
 /******************************************************
 
 Game - The Artful Dodger
-Pippin Barr
+Simon Zogheib
 
 A simple dodging game with keyboard controls
 
@@ -28,6 +28,21 @@ let enemyVX = 5;
 
 // How many dodges the player has made
 let dodges = 0;
+
+// Display the Dodge count on screen
+let dodgeCount = "Dodges:";
+
+// Create the new Font
+let newFont;
+
+
+
+// Preload the Font
+function preload() {
+  newFont = loadFont("assets/fonts/sunday.ttf");
+}
+
+
 
 // setup()
 //
@@ -127,6 +142,17 @@ function draw() {
     enemyY = random(0,height);
   }
 
+
+//Display the number of successful dodges in the game itself
+textFont(newFont);
+fill(0,0,255);
+textSize(20);
+text(dodges,95,50);
+text(dodgeCount,20,50);
+
+
+
+
   // Display the number of successful dodges in the console
   console.log(dodges);
 
@@ -139,5 +165,8 @@ function draw() {
   fill(255,0,0);
   // Draw the enemy as a circle
   ellipse(enemyX,enemyY,enemySize,enemySize);
+
+
+
 
 }
