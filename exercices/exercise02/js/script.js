@@ -35,6 +35,12 @@ let dodgeCount = "Dodges:";
 // Create the new Font
 let newFont;
 
+// Create variable for new enemy size
+let newEnemySize;
+
+// Create variable for new enemy speed
+let newEnemySpeed;
+
 
 
 // Preload the Font
@@ -58,6 +64,10 @@ function setup() {
   // Put the enemy to the left at a random y coordinate within the canvas
   enemyX = 0;
   enemyY = random(0,height);
+
+
+
+
 
   // No stroke so it looks cleaner
   noStroke();
@@ -118,6 +128,13 @@ function draw() {
     avatarY = height/2;
     // Reset the dodge counter
     dodges = 0;
+
+    // Reset the enemy Size to it's original size after each collision
+    enemySize = 50;
+
+    // Reset the enemy Speed to it's original speed fter each collision
+    enemySpeed = 5;
+
   }
 
   // Check if the avatar has gone off the screen (cheating!)
@@ -129,6 +146,13 @@ function draw() {
     avatarX = width/2;
     avatarY = height/2;
     dodges = 0;
+
+    // Reset the enemy Size to it's original size after avatar leaves the screen
+    enemySize = 50;
+
+    // Reset the enemy speed to it's original speed after avatar leaves screen
+    enemySpeed = 5;
+
   }
 
   // Check if the enemy has moved all the way across the screen
@@ -140,6 +164,15 @@ function draw() {
     // Reset the enemy's position to the left at a random height
     enemyX = 0;
     enemyY = random(0,height);
+
+    // Increae the enemy Size each successful dodge
+    newEnemySize = enemySize + 15;
+    enemySize = newEnemySize;
+
+    // Increae the enemy Speed each successful dodge
+    newEnemySpeed = enemySpeed + 1;
+    enemySpeed = newEnemySpeed;
+
   }
 
 
