@@ -41,11 +41,25 @@ let newEnemySize;
 // Create variable for new enemy speed
 let newEnemySpeed;
 
+// Create the enemy image
+let enemyImage;
+
+//Create new background image
+let bg;
 
 
-// Preload the Font
+
 function preload() {
+  // Preload the Font
   newFont = loadFont("assets/fonts/sunday.ttf");
+
+  // Preload the enemy image
+  enemyImage = loadImage("assets/images/angry.png");
+
+  // Preload background image
+  bg = loadImage("assets/images/bg.png");
+
+
 }
 
 
@@ -55,7 +69,11 @@ function preload() {
 // Make the canvas, position the avatar and anemy
 function setup() {
   // Create our playing area
+
+
+
   createCanvas(500,500);
+
 
   // Put the avatar in the centre
   avatarX = width/2;
@@ -78,8 +96,16 @@ function setup() {
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
 function draw() {
-  // A pink background
-  background(255,220,220);
+
+  // Draw the image of the background
+  imageMode(CORNER);
+  background(bg);
+
+
+
+
+
+
 
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
@@ -177,28 +203,35 @@ function draw() {
 
 
 //Display the number of successful dodges in the game itself
+
 textFont(newFont);
-fill(0,0,255);
+noStroke();
+fill(255,255,255);
 textSize(20);
 text(dodges,95,50);
 text(dodgeCount,20,50);
 
 
 
-
   // Display the number of successful dodges in the console
   console.log(dodges);
 
-  // The player is black
-  fill(0);
+  // The player is Now blue
+  fill(0,0,255);
+  //The player has a yellow stoke
+  strokeWeight(5);
+  stroke(255,255,0);
   // Draw the player as a circle
   ellipse(avatarX,avatarY,avatarSize,avatarSize);
 
   // The enemy is red
-  fill(255,0,0);
+  //fill(255,0,0);
   // Draw the enemy as a circle
-  ellipse(enemyX,enemyY,enemySize,enemySize);
+  //ellipse(enemyX,enemyY,enemySize,enemySize);
 
+  // Draw the New enemy Image and position it from center
+  imageMode(CENTER);
+  image(enemyImage,enemyX,enemyY,enemySize,enemySize);
 
 
 
