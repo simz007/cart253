@@ -47,6 +47,8 @@ let enemyImage;
 //Create new background image
 let bg;
 
+//Create new water background when dodges>5
+let waterBg;
 
 
 function preload() {
@@ -59,6 +61,9 @@ function preload() {
   // Preload background image
   bg = loadImage("assets/images/bg.png");
 
+
+  // Preload Water background images
+  waterBg = loadImage("assets/images/water.png");
 
 }
 
@@ -104,7 +109,17 @@ function draw() {
 
 
 
+// Change the background to water if number of dodges is > 4
 
+  if (dodges >= 4) {
+    background(waterBg);
+  }
+
+// Change the background to black if the SHIFT key is pressed
+
+ if (keyIsDown(SHIFT)) {
+    background(0,0,0);
+  }
 
 
   // Default the avatar's velocity to 0 in case no key is pressed this frame
@@ -130,6 +145,8 @@ function draw() {
   else if (keyIsDown(DOWN_ARROW)) {
     avatarVY = avatarSpeed;
   }
+
+
 
   // Move the avatar according to its calculated velocity
   avatarX = avatarX + avatarVX;
@@ -217,7 +234,7 @@ text(dodgeCount,20,50);
   console.log(dodges);
 
   // The player is Now blue
-  fill(0,0,255);
+  fill(0,0,255)
   //The player has a yellow stoke
   strokeWeight(5);
   stroke(255,255,0);
