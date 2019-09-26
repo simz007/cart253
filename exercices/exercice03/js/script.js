@@ -14,9 +14,10 @@ https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal
 
 
 
-let imgWanted;
 
-let redRect;
+// Create the text Chien PErdu
+
+let chienPerdu = "CHIEN PERDU";
 
 
 
@@ -76,7 +77,7 @@ function setup() {
 
 
 
-    //Draw the red rectangle top right
+
 
 
 
@@ -126,9 +127,7 @@ function setup() {
       image(decoyImage10,x,y);
     }
 
-
-
-  }
+}
 
 
   // Draw the red rectangle on top right of window
@@ -141,6 +140,12 @@ function setup() {
 // Draw our target image in the red rectangle
 
       image(targetImage, width - 125, 100);
+
+
+  // Display text CHIEN PERDU
+  fill(255);
+  textSize(20);
+  text(chienPerdu, windowWidth - 200, 50 );
 
 
   // Once we've displayed all decoys, we choose a random location for the target
@@ -160,6 +165,13 @@ function setup() {
 
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
+
+
+
+
+
+
+
 }
 
 
