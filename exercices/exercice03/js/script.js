@@ -12,6 +12,14 @@ Animal images from:
 https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal-icon-set/
 ******************************************************************************/
 
+
+
+let imgWanted;
+
+let redRect;
+
+
+
 // Position and image of the sausage dog we're searching for
 let targetX;
 let targetY;
@@ -40,6 +48,9 @@ let gameOver = false;
 //
 // Loads the target and decoy images before the program starts
 function preload() {
+
+
+
   targetImage = loadImage("assets/images/animals-target.png");
 
   decoyImage1 = loadImage("assets/images/animals-01.png");
@@ -63,12 +74,22 @@ function setup() {
   background("#ffff00");
   imageMode(CENTER);
 
+
+
+    //Draw the red rectangle top right
+
+
+
   // Use a for loop to draw as many decoys as we need
   for (let i = 0; i < numDecoys; i++) {
     // Choose a random location on the canvas for this decoy
     let x = random(0,width);
     let y = random(0,height);
+
+
     // Generate a random number we can use for probability
+
+
     let r = random();
     // Use the random number to display one of the ten decoy
     // images, each with a 10% chance of being shown
@@ -104,11 +125,38 @@ function setup() {
     else if (r < 1.0) {
       image(decoyImage10,x,y);
     }
+
+
+
   }
+
+
+  // Draw the red rectangle on top right of window
+
+      rectMode(CORNER);
+      fill(255,0,0);
+      rect(windowWidth-250,0, 250, 200);
+
+
+// Draw our target image in the red rectangle
+
+      image(targetImage, width - 125, 100);
+
 
   // Once we've displayed all decoys, we choose a random location for the target
   targetX = random(0,width);
   targetY = random(0,height);
+
+
+// Avoid that our target image gets displayed under the red rectangle
+  if ((targetX > width - 250) && (targetY < 200)){
+
+    targetX = 100 + random(0,100);
+    targetY= 200 + random(0,100);
+  }
+
+
+
 
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
@@ -120,6 +168,12 @@ function setup() {
 // Displays the game over screen if the player has won,
 // otherwise nothing (all the gameplay stuff is in mousePressed())
 function draw() {
+
+
+
+
+
+
   if (gameOver) {
     // Prepare our typography
     textFont("Helvetica");
