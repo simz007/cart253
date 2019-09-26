@@ -21,6 +21,20 @@ let chienPerdu = "CHIEN PERDU";
 
 
 
+
+
+// Create the Dimension of movement
+let tx;
+let ty;
+
+
+// Position of sausage dog when you win
+
+let winX;
+let winY;
+
+
+
 // Position and image of the sausage dog we're searching for
 let targetX;
 let targetY;
@@ -76,9 +90,9 @@ function setup() {
   imageMode(CENTER);
 
 
-
-
-
+// set dimension of movements for the winning dog
+  tx = random(0,windowWidth);
+  ty = random(0,windowHeight);
 
 
   // Use a for loop to draw as many decoys as we need
@@ -126,6 +140,10 @@ function setup() {
     else if (r < 1.0) {
       image(decoyImage10,x,y);
     }
+
+
+
+
 
 }
 
@@ -187,6 +205,10 @@ function draw() {
 
 
   if (gameOver) {
+
+
+
+
     // Prepare our typography
     textFont("Helvetica");
     textSize(128);
@@ -203,6 +225,25 @@ function draw() {
     stroke(random(255));
     strokeWeight(10);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
+
+
+
+
+// Move sausage dog image with Noise-based movement
+    tx += 0.01;
+    ty += 0.01;
+    image(targetImage,winX,winY);
+    winX = width * noise(tx);
+    winY = height * noise(ty);
+
+
+
+
+
+
+
+
+
   }
 }
 
