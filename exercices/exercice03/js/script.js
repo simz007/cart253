@@ -239,6 +239,34 @@ function draw() {
 
 
 
+// MAke the target image wrap arround the canvas
+
+    if (winX < 0) {
+      winX += width;
+    }
+    else if (winX> width) {
+      winX -= width;
+    }
+    if ( winY< 0) {
+      winY += height;
+    }
+    else if (winY> height) {
+      winY -= height;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }
 }
