@@ -56,7 +56,9 @@ let decoyImage10;
 
 // The number of decoys to show on the screen, randomly
 // chosen from the decoy images
-let numDecoys = 100;
+
+// Increase number of decoys to make it harder
+let numDecoys = 160;
 
 // Keep track of whether they've won
 let gameOver = false;
@@ -110,11 +112,17 @@ function setup() {
     // images, each with a 10% chance of being shown
     // We'll talk more about this nice quality of random soon enough.
     // But basically each "if" and "else if" has a 10% chance of being true
+
+
+
+// Make some decoy images larger by increasing width and height
+
+
     if (r < 0.1) {
-      image(decoyImage1,x,y);
+      image(decoyImage1,x,y,decoyImage1.width*1.3, decoyImage1.height*1.3);
     }
     else if (r < 0.2) {
-      image(decoyImage2,x,y);
+      image(decoyImage2,x,y,decoyImage2.width*1.3, decoyImage2.height*1.3);
     }
     else if (r < 0.3) {
       image(decoyImage3,x,y);
@@ -123,7 +131,7 @@ function setup() {
       image(decoyImage4,x,y);
     }
     else if (r < 0.5) {
-      image(decoyImage5,x,y);
+      image(decoyImage5,x,y,decoyImage5.width*1.3, decoyImage5.height*1.3);
     }
     else if (r < 0.6) {
       image(decoyImage6,x,y);
@@ -135,7 +143,7 @@ function setup() {
       image(decoyImage8,x,y);
     }
     else if (r < 0.9) {
-      image(decoyImage9,x,y);
+      image(decoyImage9,x,y,decoyImage9.width*1.5, decoyImage9.height*1.3);
     }
     else if (r < 1.0) {
       image(decoyImage10,x,y);
