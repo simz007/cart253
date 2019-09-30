@@ -19,13 +19,9 @@ https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal
 
 let chienPerdu = "CHIEN PERDU";
 
+//Target Speed change once you win
+let speedChange = 1;
 
-
-
-
-// Create the Dimension of movement
-let tx;
-let ty;
 
 
 // Position of sausage dog when you win
@@ -39,6 +35,12 @@ let winY;
 let targetX;
 let targetY;
 let targetImage;
+
+
+// Create velocity for the target
+let targetVx;
+let targetVy;
+
 
 // The ten decoy images
 let decoyImage1;
@@ -90,9 +92,7 @@ function setup() {
   imageMode(CENTER);
 
 
-// set dimension of movements for the winning dog
-  tx = random(0,windowWidth);
-  ty = random(0,windowHeight);
+
 
 
   // Use a for loop to draw as many decoys as we need
@@ -142,9 +142,6 @@ function setup() {
     }
 
 
-
-
-
 }
 
 
@@ -187,7 +184,13 @@ function setup() {
 
 
 
+  // Target initial Velocity
+    targetVx = 0;
+    targetVy = 0;
 
+//winning image Position
+    winX=targetX;
+    winY=targetY;
 
 
 }
@@ -227,19 +230,12 @@ function draw() {
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
 
 
-
-
-// Move sausage dog image with Noise-based movement
-    tx += 0.01;
-    ty += 0.01;
-    image(targetImage,winX,winY);
-    winX = width * noise(tx);
-    winY = height * noise(ty);
-
-
-
-
-
+// Draw and make the dog image move across the screen randomly
+  image(targetImage,winX,winY);
+  targetVx += random(-speedChange,speedChange);
+  targetVy += random(-speedChange,speedChange);
+  winX += targetVx;
+  winY +=targetVy;
 
 
 
