@@ -68,7 +68,6 @@ function preload() {
 }
 
 
-
 // setup()
 //
 // Make the canvas, position the avatar and anemy
