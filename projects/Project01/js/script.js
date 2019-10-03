@@ -31,6 +31,15 @@ let playerMaxHealth = 255;
 // Player fill color
 let playerFill = 50;
 
+// Create variables for player sprint speed and player initial speed
+let playerSprintSpeed = 5;
+let playerInitialSpeed = 2;
+
+// Create variable for player health loss
+let playerHealthLoss = 3;
+
+
+
 // Prey position, size, velocity
 let preyX;
 let preyY;
@@ -142,6 +151,21 @@ function handleInput() {
   else {
     playerVY = 0;
   }
+
+
+// Make player move faster and loose health faster when shift is down
+
+  if (keyIsDown(16)) {
+    playerMaxSpeed = playerSprintSpeed;
+    playerHealth = playerHealth - playerHealthLoss;
+
+  }
+  else {
+    playerMaxSpeed = playerInitialSpeed;
+
+  }
+
+
 }
 
 // movePlayer()
