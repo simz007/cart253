@@ -22,6 +22,9 @@ let gameOver = false;
 let playerX;
 let playerY;
 let playerRadius = 25;
+// New variable for Eating preyRadius
+let playerEatingRadius = 0.5;
+
 let playerVX = 0;
 let playerVY = 0;
 let playerMaxSpeed = 2;
@@ -34,6 +37,9 @@ let playerFill = 50;
 // Create variables for player sprint speed and player initial speed
 let playerSprintSpeed = 5;
 let playerInitialSpeed = 2;
+
+// Create the variable for player's speed decrease after eating a prey
+let playerDecreaseSpeed = 0.05;
 
 // Create variable for player health loss
 let playerHealthLoss = 3;
@@ -74,9 +80,9 @@ function setup() {
   setupPrey();
   setupPlayer();
 
-// Set random noise values
-tx = random(0,1000);
-ty = random(0,1000);
+  // Set random noise values
+  tx = random(0, 1000);
+  ty = random(0, 1000);
 }
 
 // setupPrey()
@@ -120,8 +126,7 @@ function draw() {
 
     drawPrey();
     drawPlayer();
-  }
-  else {
+  } else {
     showGameOver();
   }
 }
@@ -133,34 +138,29 @@ function handleInput() {
   // Check for horizontal movement
   if (keyIsDown(LEFT_ARROW)) {
     playerVX = -playerMaxSpeed;
-  }
-  else if (keyIsDown(RIGHT_ARROW)) {
+  } else if (keyIsDown(RIGHT_ARROW)) {
     playerVX = playerMaxSpeed;
-  }
-  else {
+  } else {
     playerVX = 0;
   }
 
   // Check for vertical movement
   if (keyIsDown(UP_ARROW)) {
     playerVY = -playerMaxSpeed;
-  }
-  else if (keyIsDown(DOWN_ARROW)) {
+  } else if (keyIsDown(DOWN_ARROW)) {
     playerVY = playerMaxSpeed;
-  }
-  else {
+  } else {
     playerVY = 0;
   }
 
 
-// Make player move faster and loose health faster when shift is down
+  // Make player move faster and loose health faster when shift is down
 
   if (keyIsDown(16)) {
     playerMaxSpeed = playerSprintSpeed;
     playerHealth = playerHealth - playerHealthLoss;
 
-  }
-  else {
+  } else {
     playerMaxSpeed = playerInitialSpeed;
 
   }
@@ -181,8 +181,7 @@ function movePlayer() {
   if (playerX < 0) {
     // Off the left side, so add the width to reset to the right
     playerX = playerX + width;
-  }
-  else if (playerX > width) {
+  } else if (playerX > width) {
     // Off the right side, so subtract the width to reset to the left
     playerX = playerX - width;
   }
@@ -190,8 +189,7 @@ function movePlayer() {
   if (playerY < 0) {
     // Off the top, so add the height to reset to the bottom
     playerY = playerY + height;
-  }
-  else if (playerY > height) {
+  } else if (playerY > height) {
     // Off the bottom, so subtract the height to reset to the top
     playerY = playerY - height;
   }
@@ -230,6 +228,14 @@ function checkEating() {
     // Constrain to the possible range
     preyHealth = constrain(preyHealth, 0, preyMaxHealth);
 
+    // Increase the player's radius after eating a prey
+    playerRadius += playerEatingRadius;
+
+    // Decrease the player's speed after eating a prey
+    playerInitialSpeed -= playerDecreaseSpeed;
+    // Constrain the speed so it wont get to 0
+    playerInitialSpeed = constrain(playerInitialSpeed, 1, playerInitialSpeed);
+
     // Check if the prey died (health 0)
     if (preyHealth === 0) {
       // Move the "new" prey to a random position
@@ -239,6 +245,7 @@ function checkEating() {
       preyHealth = preyMaxHealth;
       // Track how many prey were eaten
       preyEaten = preyEaten + 1;
+
     }
   }
 }
@@ -251,14 +258,14 @@ function movePrey() {
   // random() will be < 0.05 5% of the time, so the prey
   // will change direction on 5% of frames
   // if (random() < 0.05) {
-    // Set velocity based on random values to get a new direction
-    // and speed of movement
-    //
-    // Use map() to convert from the 0-1 range of the random() function
-    // to the appropriate range of velocities for the prey
+  // Set velocity based on random values to get a new direction
+  // and speed of movement
+  //
+  // Use map() to convert from the 0-1 range of the random() function
+  // to the appropriate range of velocities for the prey
 
 
-// New map based on noise
+  // New map based on noise
   preyVX = map(noise(tx), 0, 1, -preyMaxSpeed, preyMaxSpeed);
   preyVY = map(noise(ty), 0, 1, -preyMaxSpeed, preyMaxSpeed);
 
@@ -267,22 +274,20 @@ function movePrey() {
   preyX = preyX + preyVX;
   preyY = preyY + preyVY;
 
-// Time Values for noise based movement
+  // Time Values for noise based movement
   tx += 0.05;
   ty += 0.05;
 
   // Screen wrapping
   if (preyX < 0) {
     preyX = preyX + width;
-  }
-  else if (preyX > width) {
+  } else if (preyX > width) {
     preyX = preyX - width;
   }
 
   if (preyY < 0) {
     preyY = preyY + height;
-  }
-  else if (preyY > height) {
+  } else if (preyY > height) {
     preyY = preyY - height;
   }
 }
