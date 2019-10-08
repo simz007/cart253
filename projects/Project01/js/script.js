@@ -27,7 +27,10 @@ let playerEatingRadius = 0.5;
 
 let playerVX = 0;
 let playerVY = 0;
-let playerMaxSpeed = 2;
+
+// Increased the player max speed to make the game faster
+// and to give more room for speed decrease evrytime the player eats a prey
+let playerMaxSpeed = 3;
 // Player health
 let playerHealth;
 let playerMaxHealth = 255;
@@ -36,7 +39,10 @@ let playerFill = 50;
 
 // Create variables for player sprint speed and player initial speed
 let playerSprintSpeed = 5;
-let playerInitialSpeed = 2;
+
+// Increased the player initial speed to make the game faster
+// and to give more room for speed decrease evrytime the player eats a prey
+let playerInitialSpeed = 3;
 
 // Create the variable for player's speed decrease after eating a prey
 let playerDecreaseSpeed = 0.05;
@@ -52,7 +58,9 @@ let preyY;
 let preyRadius = 25;
 let preyVX;
 let preyVY;
-let preyMaxSpeed = 4;
+
+// Increase the prey max speed to make it harder to catch and more intresting to play
+let preyMaxSpeed = 6;
 // Prey health
 let preyHealth;
 let preyMaxHealth = 100;
@@ -230,6 +238,8 @@ function checkEating() {
 
     // Increase the player's radius after eating a prey
     playerRadius += playerEatingRadius;
+    // Constrain the player radisu size so it won't get too big
+    playerRadius = constrain(playerRadius, playerRadius, 30);
 
     // Decrease the player's speed after eating a prey
     playerInitialSpeed -= playerDecreaseSpeed;
