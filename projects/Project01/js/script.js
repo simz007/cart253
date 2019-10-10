@@ -29,7 +29,7 @@ let playerX;
 let playerY;
 let playerRadius = 35;
 // New variable for Eating preyRadius
-let playerEatingRadius = 0.5;
+let playerEatingRadius = 1;
 
 let playerVX = 0;
 let playerVY = 0;
@@ -39,7 +39,7 @@ let playerVY = 0;
 let playerMaxSpeed = 3;
 // Player health
 let playerHealth;
-let playerMaxHealth = 900;
+let playerMaxHealth = 800;
 // Player fill color
 let playerFill = 50 ;
 
@@ -81,7 +81,7 @@ let preyMaxHealth = 100;
 let preyFill = 200;
 
 // Amount of health obtained per frame of "eating" (overlapping) the prey
-let eatHealth = 10;
+let eatHealth = 20;
 // Number of prey eaten during the game (the "score")
 let preyEaten = 0;
 
@@ -171,7 +171,7 @@ function draw() {
   textAlign(CENTER, CENTER);
   textSize(50);
   textFont("Helvetica");
-  text("START", 350, 250);
+  text("START\n FISH O FISH", 350, 250);
 }
 
 else if (state === "PLAY") {
@@ -188,8 +188,11 @@ else if (state === "PLAY") {
     drawPrey();
     drawPlayer();
 
+    energyBar();
     showScore();
-    showHealth();
+    //showHealth();
+
+
 }
 
   else {
@@ -411,7 +414,7 @@ function showGameOver() {
   textAlign(LEFT, TOP);
   textSize(20);
   fill(255);
-  text("Puff Health: " + playerHealth, 10, 10);
+  text("Puff Health ", 10, 10);
 }
 
 // Function that Displays the ammount of fish eaten
@@ -423,13 +426,41 @@ function showGameOver() {
     text("Fish Eaten: " + preyEaten, 10, 35);
   }
 
-// Create an action to allow music to play
+// Create an action to allow music to play after clicking the mouse
   function mousePressed() {
     if (state === "START") {
       state = "PLAY";
       setupSound();
     }
+    if (gameOver === true) {
+        resetGame();
+      }
+}
+
+// Reset the game to the START state with original values
+function resetGame() {
+  setupPrey();
+  setupPlayer();
+  gameOver = false;
+  state = "START";
+  playerMaxHealth = 800;
+  preyEaten = 0;
+}
 
 
+// Create a fuction for displaying an Energy bar that represents player Health
+// map the player health to the size of the background and call the fuction in draw
+
+function energyBar(){
+let energySize;
+energySize = map(playerHealth, 0, 800, 0, 300);
+push();
+fill (255, 0, 0);
+rect(10, 10, 300, 20);
+
+fill(0, 255, 0);
+rect(10, 10,energySize, 20);
+
+pop();
 
 }
