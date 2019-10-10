@@ -19,6 +19,11 @@ random movement, screen wrap.
 // Track whether the game is over
 let gameOver = false;
 
+
+// To let the game start with an action
+let state = "START";
+
+
 // Player position, size, velocity
 let playerX;
 let playerY;
@@ -96,7 +101,9 @@ function preload() {
   preyImage = loadImage("assets/images/prey.png");
   bgImage = loadImage("assets/images/bg1.png");
 
-  // Preload my sounds
+  // Preload My sounds
+  waterSound = loadSound('assets/sounds/bub.wav');
+  eatSound = loadSound('assets/sounds/dj.mp3');
 
 }
 
@@ -115,6 +122,15 @@ function setup() {
   // Set random noise values
   tx = random(0, 1000);
   ty = random(0, 1000);
+}
+
+
+function setupSound() {
+  // Setting up water sound
+    // waterSound.play();
+
+    waterSound.loop();
+
 }
 
 // setupPrey()
@@ -149,9 +165,16 @@ function draw() {
   // Add the Background image
   image(bgImage, 0, 0);
 
+  if (state === "START") {
+  image(bgImage, 0, 0);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  textFont("Helvetica");
+  text("START", 350, 250);
+}
 
-
-
+else if (state === "PLAY") {
 
   if (!gameOver) {
     handleInput();
@@ -167,12 +190,14 @@ function draw() {
 
     showScore();
     showHealth();
-
-  } else {
-    showGameOver();
-  }
 }
 
+  else {
+    showGameOver();
+
+  }
+}
+}
 // handleInput()
 //
 // Checks arrow keys and adjusts player velocity accordingly
@@ -273,7 +298,7 @@ function checkEating() {
     // Increase the player's radius after eating a prey
     playerRadius += playerEatingRadius;
     // Constrain the player radisu size so it won't get too big
-    playerRadius = constrain(playerRadius, playerRadius, 40);
+    playerRadius = constrain(playerRadius, 35, 150);
 
     // Decrease the player's speed after eating a prey
     playerInitialSpeed -= playerDecreaseSpeed;
@@ -289,6 +314,7 @@ function checkEating() {
       preyHealth = preyMaxHealth;
       // Track how many prey were eaten
       preyEaten = preyEaten + 1;
+      eatSound.play();
     }
 
 
@@ -371,10 +397,11 @@ function showGameOver() {
   fill(0);
   // Set up the text to display
   let gameOverText = "GAME OVER PUFFY\n"; // \n means "new line"
-  gameOverText = gameOverText + "You ate " + preyEaten + " fishes\n";
+  gameOverText = gameOverText + "You ate " + preyEaten + " fish\n";
   gameOverText = gameOverText + "Swim faster next time!."
   // Display it in the centre of the screen
   text(gameOverText, width / 2, height / 2);
+    waterSound.stop();
 }
 
 
@@ -395,3 +422,14 @@ function showGameOver() {
     fill(255);
     text("Fish Eaten: " + preyEaten, 10, 35);
   }
+
+// Create an action to allow music to play
+  function mousePressed() {
+    if (state === "START") {
+      state = "PLAY";
+      setupSound();
+    }
+
+
+
+}
