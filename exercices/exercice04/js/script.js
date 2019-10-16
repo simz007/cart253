@@ -1,7 +1,7 @@
 "use strict";
 
 // Pong
-// by Pippin Barr
+// by Simon Zogheib
 //
 // A "simple" implementation of Pong with no scoring system
 // just the ability to play the game with the keyboard.
@@ -41,7 +41,9 @@ let leftPaddle = {
   vy: 0,
   speed: 5,
   upKey: 87,
-  downKey: 83
+  downKey: 83,
+  green: 255,
+  alpha: 255
 }
 
 // RIGHT PADDLE
@@ -56,29 +58,44 @@ let rightPaddle = {
   vy: 0,
   speed: 5,
   upKey: 38,
-  downKey: 40
+  downKey: 40,
+  green: 255,
+  alpha: 255
 }
 
 // A variable to hold the beep sound we will play on bouncing
 let beepSFX;
 
+//A variable to hold Applause sound evrytime a player Scores
+let applauseSFX;
 
 // Variables to track the Scroe
 let rightScore = 0;
 let leftScore = 0;
 
-
-
-
-
+// Visual Bars for score
+let leftBar = {
+  x: 50,
+  y: 50,
+  w: 10,
+  h: 20,
+}
+let rightBar = {
+  x: 450,
+  y: 50,
+  w: 10,
+  h: 20,
+}
 
 
 
 // preload()
 //
 // Loads the beep audio for the sound of bouncing
+// Load applause sound when a player scores
 function preload() {
   beepSFX = new Audio("assets/sounds/beep.wav");
+  applauseSFX = new Audio("assets/sounds/applause.wav");
 }
 
 // setup()
@@ -130,8 +147,7 @@ function draw() {
     checkBallPaddleCollision(leftPaddle);
     checkBallPaddleCollision(rightPaddle);
 
-// Call the fuction that displays the Score
-    displayScore();
+
 
     // Check if the ball went out of bounds and respond if so
     // (Note how we can use a function that returns a truth value
@@ -143,8 +159,7 @@ function draw() {
       // the ball went off...
 
     }
-  }
-  else {
+  } else {
     // Otherwise we display the message to start the game
     displayStartMessage();
   }
@@ -153,6 +168,8 @@ function draw() {
   displayPaddle(leftPaddle);
   displayPaddle(rightPaddle);
   displayBall();
+  displayScoreBar(rightBar);
+  displayScoreBar(leftBar);
 }
 
 // handleInput()
@@ -170,8 +187,7 @@ function handleInput(paddle) {
   else if (keyIsDown(paddle.downKey)) {
     // Move down
     paddle.vy = paddle.speed;
-  }
-  else {
+  } else {
     // Otherwise stop moving
     paddle.vy = 0;
   }
@@ -200,22 +216,29 @@ function updateBall() {
 // Returns true if so, false otherwise
 function ballIsOutOfBounds() {
   // Update the score depending on where the ball went
+  // Change the opacity of the paddles, the more the loose the more they get transparant
+  // using an alpha value and calling it from the object
+
   if (ball.x < 0) {
     rightScore = rightScore + 1;
+    leftPaddle.alpha -= 25;
+    rightBar.w += 3;
   }
   if (ball.x > width) {
     leftScore = leftScore + 1;
+    rightPaddle.alpha -= 25;
+    leftBar.w += 3;
   }
 
   // Check for ball going off the sides
   if (ball.x < 0 || ball.x > width) {
+    // Play applause sound effect by rewinding and then playing
+    applauseSFX.currentTime = 0;
+    applauseSFX.play();
     return true;
-  }
-  else {
+  } else {
     return false;
   }
-
-
 
 }
 
@@ -272,15 +295,20 @@ function checkBallPaddleCollision(paddle) {
 // Draws the specified paddle
 function displayPaddle(paddle) {
   // Draw the paddles
+  push();
+  fill(255, paddle.alpha);
   rect(paddle.x, paddle.y, paddle.w, paddle.h);
+  pop();
+
 }
+
 
 // displayBall()
 //
-// Draws the ball on screen as a square
+// Draws the ball on screen as an ellipse
 function displayBall() {
   // Draw the ball
-  rect(ball.x, ball.y, ball.size, ball.size);
+  ellipse(ball.x, ball.y, ball.size, ball.size);
 }
 
 // resetBall()
@@ -313,8 +341,18 @@ function mousePressed() {
   playing = true;
 }
 
-// fuction for score display
-function displayScore(){
-text(leftScore, 100, 100);
-text(rightScore, 500, 100);
+// function to draw the score Bars
+function displayScoreBar() {
+  // The right Bar
+  push();
+  fill(0, 255, 0);
+  rectMode(CORNER);
+  rect(rightBar.x, rightBar.y, rightBar.w, rightBar.h);
+  pop();
+  // The Left Bar
+  push()
+  fill(0, 255, 0);
+  rectMode(CORNER);
+  rect(leftBar.x, leftBar.y, leftBar.w, leftBar.h);
+  pop();
 }
