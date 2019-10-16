@@ -315,11 +315,22 @@ function displayBall() {
 //
 // Sets the starting position and velocity of the ball
 function resetBall() {
+  // Making the ball launch in the direction of the paddle that won
+  // the most recent point
+  if (ball.x < 0) {
+      ball.vx = ball.speed;
+    } else {
+      ball.vx = -ball.speed;
+    }
+
+  // Give the ball a random y velocity
+  // give it a random value between 1 and 6
+  ball.vy = random(1, 6);
+
   // Initialise the ball's position and velocity
   ball.x = width / 2;
   ball.y = height / 2;
-  ball.vx = ball.speed;
-  ball.vy = ball.speed;
+
 }
 
 // displayStartMessage()
