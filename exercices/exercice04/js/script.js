@@ -12,6 +12,9 @@
 // Whether the game has started
 let playing = false;
 
+// To track if the game is over
+let gameOver = false;
+
 // Game colors (using hexadecimal)
 let bgColor = 0;
 let fgColor = 255;
@@ -135,7 +138,9 @@ function draw() {
   // Fill the background
   background(bgColor);
 
-  if (playing) {
+  if (playing && !gameOver) {
+    // Check if game is over
+    checkGameOver();
     // If the game is in play, we handle input and move the elements around
     handleInput(leftPaddle);
     handleInput(rightPaddle);
@@ -159,9 +164,6 @@ function draw() {
       // the ball went off...
 
     }
-  } else {
-    // Otherwise we display the message to start the game
-    displayStartMessage();
   }
 
   // We always display the paddles and ball so it looks like Pong!
@@ -170,6 +172,13 @@ function draw() {
   displayBall();
   displayScoreBar(rightBar);
   displayScoreBar(leftBar);
+
+  if (gameOver) {
+    gameOverScreen();
+  } else if (!playing) {
+    // Otherwise we display the message to start the game
+    displayStartMessage();
+  }
 }
 
 // handleInput()
@@ -224,7 +233,7 @@ function ballIsOutOfBounds() {
     rightScore = rightScore + 1;
     rightScore = constrain(rightScore, 0, 10);
     leftPaddle.alpha -= 25;
-  
+
   }
   if (ball.x > width) {
     leftScore = leftScore + 1;
@@ -391,5 +400,36 @@ function displayScoreBar() {
   fill(0, 255, 0);
   rectMode(CORNER);
   rect(leftBar.x, leftBar.y, leftBarScore, leftBar.h);
+  pop();
+}
+
+// Fuction to chek if the game is over
+// once a player reaches 10 points the game ends
+function checkGameOver() {
+  if ((leftScore >= 10) || (rightScore >= 10)) {
+    gameOver = true;
+  }
+}
+
+// Fucntion to add the text of the game over screnn and display
+// each player's score
+function gameOverScreen() {
+  // set the game over screen to a black background with white text on it
+  background(0);
+  push();
+  fill(0,255,0);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  // Display We have a Winner Text
+  text("WE HAVE A WINNER", width / 2, 200);
+  pop();
+
+  push();
+  fill(255);
+  textSize(25);
+  textAlign(CENTER, CENTER);
+  // Display the score of each player after the game is over
+  text("Left player Scored " + (leftScore) + " point(s)", width / 2, 240);
+  text("Right player Scored " + (rightScore) + " point(s)", width / 2, 270);
   pop();
 }
