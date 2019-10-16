@@ -218,16 +218,19 @@ function ballIsOutOfBounds() {
   // Update the score depending on where the ball went
   // Change the opacity of the paddles, the more the loose the more they get transparant
   // using an alpha value and calling it from the object
+  // constrain the right and left score to a maximum value of 10
 
   if (ball.x < 0) {
     rightScore = rightScore + 1;
+    rightScore = constrain(rightScore, 0, 10);
     leftPaddle.alpha -= 25;
-    rightBar.w += 3;
+  
   }
   if (ball.x > width) {
     leftScore = leftScore + 1;
+    leftScore = constrain(leftScore, 0, 10);
     rightPaddle.alpha -= 25;
-    leftBar.w += 3;
+
   }
 
   // Check for ball going off the sides
@@ -354,16 +357,39 @@ function mousePressed() {
 
 // function to draw the score Bars
 function displayScoreBar() {
-  // The right Bar
+
+
+  // map the width of the right score bar to the score of
+  // the right side player and limit the score to 10
+  let rightBarScore;
+  rightBarScore = map(rightScore, 0, 10, 0, 110);
+
+  // Draw the right Score bar by using two diffrent rectangles
+  // one on top of the other, the top green rectangle will change size
+  // depending on the right score
   push();
+  rectMode(CORNER);
+  fill (255, 0, 0);
+  rect(rightBar.x, rightBar.y, 110, 20);
   fill(0, 255, 0);
   rectMode(CORNER);
-  rect(rightBar.x, rightBar.y, rightBar.w, rightBar.h);
+  rect(rightBar.x, rightBar.y, rightBarScore, rightBar.h);
   pop();
-  // The Left Bar
+
+  // map the width of the left score bar to the score of
+  // the left side player and limit the score to 10
+  let leftBarScore;
+  leftBarScore = map(leftScore, 0, 10, 0, 110);
+
+  // Draw the left Score bar by using two diffrent rectangles
+  // one on top of the other, the top green rectangle will change size
+  // depending on the left score
   push()
+  rectMode(CORNER);
+  fill (255, 0, 0);
+  rect(leftBar.x, leftBar.y, 110, 20);
   fill(0, 255, 0);
   rectMode(CORNER);
-  rect(leftBar.x, leftBar.y, leftBar.w, leftBar.h);
+  rect(leftBar.x, leftBar.y, leftBarScore, leftBar.h);
   pop();
 }
