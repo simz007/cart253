@@ -342,13 +342,15 @@ function resetBall() {
   // the most recent point
   if (ball.x < 0) {
     ball.vx = ball.speed;
-  } else {
+  } else if (ball.x > width) {
     ball.vx = -ball.speed;
+  } else {
+    ball.vx = ball.speed;
   }
 
   // Give the ball a random y velocity
   // give it a random value between 1 and 6
-  ball.vy = random(1, 6);
+  ball.vy = random(-3, 6);
 
   // Initialise the ball's position and velocity
   ball.x = width / 2;
@@ -373,8 +375,15 @@ function displayStartMessage() {
 //
 // Here to require a click to start playing the game
 // Which will help us be allowed to play audio in the browser
+// add a mousePressed statement to reset the game after the gameover screen with a click
 function mousePressed() {
- playing = true;
+
+  if (!playing) {
+    playing = true;
+  } else if (gameOver) {
+    resetGame();
+    setupPaddles();
+  }
 }
 
 // function to draw the score Bars
@@ -446,4 +455,16 @@ function gameOverScreen() {
   text("Right player Scored " + (rightScore) + " Goal(s)", width / 2, 240);
   text("Left player Scored " + (leftScore) + " Goal(s)", width / 2, 270);
   pop();
+}
+
+// function to reset the game
+
+function resetGame() {
+  playing = false;
+  gameOver = false;
+  leftScore = 0;
+  rightScore = 0;
+  leftPaddle.alpha = 255;
+  rightPaddle.alpha = 255;
+
 }
