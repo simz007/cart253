@@ -456,11 +456,11 @@ let energySize;
 energySize = map(playerHealth, 0, 800, 0, 300);
 push();
 fill (255, 0, 0);
-rect(10, 10, 300, 20);
+rect(10, 10, 300, 25);
 
 fill(0, 255, 0);
-rect(10, 10,energySize, 20);
+rect(10, 10,energySize, 25);
 
-pop();
+pop()
 
 }

@@ -1,13 +1,11 @@
 "use strict";
 
-// Pong
+// Pong Soccer
 // by Simon Zogheib
 //
-// A "simple" implementation of Pong with no scoring system
-// just the ability to play the game with the keyboard.
-//
+// A "simple" implementation of Soccer Pong with a bar as a scoring guide
 // Up and down keys control the right hand paddle, W and S keys control
-// the left hand paddle
+// the left hand paddle, the first player to get to 10 goals wins the game.
 
 // Whether the game has started
 let playing = false;
@@ -26,7 +24,7 @@ let fgColor = 255;
 let ball = {
   x: 0,
   y: 0,
-  size: 20,
+  size: 30,
   vx: 0,
   vy: 0,
   speed: 5
@@ -90,15 +88,24 @@ let rightBar = {
   h: 20,
 }
 
+// Variable to store the background image
+let bgImage;
+
+// Variable to store the ball image
+let ballImage;
 
 
 // preload()
 //
 // Loads the beep audio for the sound of bouncing
 // Load applause sound when a player scores
+
 function preload() {
   beepSFX = new Audio("assets/sounds/beep.wav");
   applauseSFX = new Audio("assets/sounds/applause.wav");
+  // Load background Image
+  bgImage = loadImage("assets/images/bg.png");
+  ballImage = loadImage("assets/images/ball.png");
 }
 
 // setup()
@@ -135,8 +142,9 @@ function setupPaddles() {
 // Calls the appropriate functions to run the game
 // See how tidy it looks?!
 function draw() {
-  // Fill the background
-  background(bgColor);
+
+  // Add the Background image
+  image(bgImage, 0, 0);
 
   if (playing && !gameOver) {
     // Check if game is over
@@ -319,8 +327,11 @@ function displayPaddle(paddle) {
 //
 // Draws the ball on screen as an ellipse
 function displayBall() {
-  // Draw the ball
-  ellipse(ball.x, ball.y, ball.size, ball.size);
+  // Draw the soccer ball image
+  push();
+  imageMode(CENTER);
+  image(ballImage, ball.x, ball.y, ball.size, ball.size);
+  pop();
 }
 
 // resetBall()
@@ -330,10 +341,10 @@ function resetBall() {
   // Making the ball launch in the direction of the paddle that won
   // the most recent point
   if (ball.x < 0) {
-      ball.vx = ball.speed;
-    } else {
-      ball.vx = -ball.speed;
-    }
+    ball.vx = ball.speed;
+  } else {
+    ball.vx = -ball.speed;
+  }
 
   // Give the ball a random y velocity
   // give it a random value between 1 and 6
@@ -351,8 +362,10 @@ function resetBall() {
 function displayStartMessage() {
   push();
   textAlign(CENTER, CENTER);
-  textSize(32);
-  text("CLICK TO START", width / 2, height / 2);
+  textSize(40);
+  textFont("Impact");
+  fill(255, 255, 0);
+  text("CLICK TO START", width / 2, 100);
   pop();
 }
 
@@ -361,7 +374,7 @@ function displayStartMessage() {
 // Here to require a click to start playing the game
 // Which will help us be allowed to play audio in the browser
 function mousePressed() {
-  playing = true;
+ playing = true;
 }
 
 // function to draw the score Bars
@@ -378,7 +391,7 @@ function displayScoreBar() {
   // depending on the right score
   push();
   rectMode(CORNER);
-  fill (255, 0, 0);
+  fill(255, 0, 0);
   rect(rightBar.x, rightBar.y, 110, 20);
   fill(0, 255, 0);
   rectMode(CORNER);
@@ -395,7 +408,7 @@ function displayScoreBar() {
   // depending on the left score
   push()
   rectMode(CORNER);
-  fill (255, 0, 0);
+  fill(255, 0, 0);
   rect(leftBar.x, leftBar.y, 110, 20);
   fill(0, 255, 0);
   rectMode(CORNER);
@@ -414,10 +427,11 @@ function checkGameOver() {
 // Fucntion to add the text of the game over screnn and display
 // each player's score
 function gameOverScreen() {
-  // set the game over screen to a black background with white text on it
+  // set the game over screen to a black background with Green and white text on it
   background(0);
   push();
-  fill(0,255,0);
+  textFont("Impact");
+  fill(0, 255, 0);
   textSize(30);
   textAlign(CENTER, CENTER);
   // Display We have a Winner Text
@@ -429,7 +443,7 @@ function gameOverScreen() {
   textSize(25);
   textAlign(CENTER, CENTER);
   // Display the score of each player after the game is over
-  text("Left player Scored " + (leftScore) + " point(s)", width / 2, 240);
-  text("Right player Scored " + (rightScore) + " point(s)", width / 2, 270);
+  text("Right player Scored " + (rightScore) + " Goal(s)", width / 2, 240);
+  text("Left player Scored " + (leftScore) + " Goal(s)", width / 2, 270);
   pop();
 }
