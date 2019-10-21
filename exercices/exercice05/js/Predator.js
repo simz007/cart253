@@ -10,7 +10,9 @@ class Predator {
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, fillColor, radius) {
+  // Added the Keycodes as arguments in the constructor
+  //
+  constructor(x, y, speed, fillColor, radius, upKey, downKey, leftKey, rightKey) {
     // Position
     this.x = x;
     this.y = y;
@@ -27,10 +29,11 @@ class Predator {
     this.fillColor = fillColor;
     this.radius = this.health; // Radius is defined in terms of health
     // Input properties
-    this.upKey = UP_ARROW;
-    this.downKey = DOWN_ARROW;
-    this.leftKey = LEFT_ARROW;
-    this.rightKey = RIGHT_ARROW;
+    // Changed to match arguments
+    this.upKey = upKey;
+    this.downKey = downKey;
+    this.leftKey = leftKey;
+    this.rightKey = rightKey;
   }
 
   // handleInput

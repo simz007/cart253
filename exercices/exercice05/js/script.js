@@ -1,12 +1,18 @@
 // Predator-Prey Simulation
-// by Pippin Barr
+// by Simon Zogheib
 //
-// Creates a predator and three prey (of different sizes and speeds)
-// The predator chases the prey using the arrow keys and consumes them.
+// Creates a Two predator and three prey (of different sizes and speeds)
+// The predators chases the prey using the arrow keys(Tiger) and the WASD keys(Lion) and consumes them.
 // The predator loses health over time, so must keep eating to survive.
 
-// Our predator
+
+// Our predators
+// tiger moves with arrow keys
 let tiger;
+// lion moves with WASD keys
+let lion;
+
+
 
 // The three prey
 let antelope;
@@ -19,7 +25,12 @@ let bee;
 // Creates objects for the predator and three prey
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(100, 100, 5, color(200, 200, 0), 40);
+  tiger = new Predator(500, 300, 5, color(200, 200, 0), 40, 38, 40, 37, 39);
+
+  // Create the lion as a new predators with diffrent keycodes as arguments
+  // and a diffrent starting position and color
+  lion = new Predator(100, 200, 5, color(255, 0, 0), 40, 87, 83, 65, 68);
+
   antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
   zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
   bee = new Prey(100, 100, 20, color(255, 255, 0), 10);
@@ -35,8 +46,13 @@ function draw() {
   // Handle input for the tiger
   tiger.handleInput();
 
+  // Handle input for the lion
+  lion.handleInput();
+
   // Move all the "animals"
+  // add the move of the lion
   tiger.move();
+  lion.move();
   antelope.move();
   zebra.move();
   bee.move();
@@ -46,8 +62,15 @@ function draw() {
   tiger.handleEating(zebra);
   tiger.handleEating(bee);
 
+  // Handle the lion eating any of the prey
+  lion.handleEating(antelope);
+  lion.handleEating(zebra);
+  lion.handleEating(bee);
+
   // Display all the "animals"
+  // add the display of the lion
   tiger.display();
+  lion.display();
   antelope.display();
   zebra.display();
   bee.display();
