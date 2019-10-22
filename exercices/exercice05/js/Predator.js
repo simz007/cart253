@@ -48,29 +48,25 @@ class Predator {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
       this.vx = -this.speed;
-    }
-    else if (keyIsDown(this.rightKey)) {
+    } else if (keyIsDown(this.rightKey)) {
       this.vx = this.speed;
-    }
-    else {
+    } else {
       this.vx = 0;
     }
     // Vertical movement
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
-    }
-    else if (keyIsDown(this.downKey)) {
+    } else if (keyIsDown(this.downKey)) {
       this.vy = this.speed;
-    }
-    else {
+    } else {
       this.vy = 0;
     }
 
     // Add the sprint option input
     if (keyIsDown(this.sprintKey)) {
-    this.vx *= 2;
-    this.vy *= 2;
-      }
+      this.vx *= 2;
+      this.vy *= 2;
+    }
 
   }
 
@@ -98,15 +94,13 @@ class Predator {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
@@ -128,10 +122,10 @@ class Predator {
       prey.health -= this.healthGainPerEat;
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
-      // change prey Eaten by adding the value 1 and keep track of it
-      console.log("Prey Eaten: " + this.preyEaten);
-      this.preyEaten += 1;
-      prey.reset();
+        // change prey Eaten by adding the value 1 and keep track of it
+        console.log("Prey Eaten: " + this.preyEaten);
+        this.preyEaten += 1;
+        prey.reset();
 
       }
     }
@@ -142,11 +136,21 @@ class Predator {
   // Draw the predator as an ellipse on the canvas
   // with a radius the same size as its current health.
   display() {
+    // added if statemnt to diplay the predator and the number of prey eaten
+    //only if it's still alive
+    if (this.radius > 0) {
     push();
     noStroke();
     fill(this.fillColor);
     this.radius = this.health;
     ellipse(this.x, this.y, this.radius * 2);
+    // Display how many prey each predator has eaten
+    textAlign(CENTER,CENTER);
+    textSize(20);
+    fill(255);
+    // position the text in the center of the predator
+    text(this.preyEaten,this.x,this.y);
     pop();
+    }
   }
 }

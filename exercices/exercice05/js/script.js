@@ -45,6 +45,19 @@ function draw() {
   // Clear the background to black
   background(0);
 
+  //Display preys eaten by the Tiger at the bottom of the screen
+ textAlign(CENTER, CENTER);
+ textSize(20);
+ fill(255);
+ text("Prey eaten by Tiger: " + tiger.preyEaten, width / 2, windowHeight - 50);
+
+
+ //Display preys eaten by the Lion at the bottom of the screen
+textAlign(CENTER, CENTER);
+textSize(20);
+fill(255);
+text("Prey eaten by Lion: " + lion.preyEaten, width / 2, windowHeight - 20);
+
   // Handle input for the tiger
   tiger.handleInput();
 
@@ -76,4 +89,9 @@ function draw() {
   antelope.display();
   zebra.display();
   bee.display();
+
+
+
+
+
 }
