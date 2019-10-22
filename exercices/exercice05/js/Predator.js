@@ -120,7 +120,10 @@ class Predator {
       prey.health -= this.healthGainPerEat;
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
-        prey.reset();
+      // change prey Eaten by adding the value 1 and keep track of it
+      console.log("Prey Eaten: " + this.preyEaten);
+      this.preyEaten += 1;
+      prey.reset();
 
       }
     }
