@@ -28,6 +28,9 @@ class Predator {
     // Display properties
     this.fillColor = fillColor;
     this.radius = this.health; // Radius is defined in terms of health
+    // Property to Keep track of how many prey eaten
+    this.preyEaten = 0;
+
     // Input properties
     // Changed to match arguments
     this.upKey = upKey;
@@ -118,6 +121,7 @@ class Predator {
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
         prey.reset();
+
       }
     }
   }
