@@ -12,7 +12,7 @@ class Predator {
   // Either sets default values or uses the arguments provided
   // Added the Keycodes as arguments in the constructor
   //
-  constructor(x, y, speed, fillColor, radius, upKey, downKey, leftKey, rightKey) {
+  constructor(x, y, speed, fillColor, radius, upKey, downKey, leftKey, rightKey, sprintKey) {
     // Position
     this.x = x;
     this.y = y;
@@ -37,6 +37,7 @@ class Predator {
     this.downKey = downKey;
     this.leftKey = leftKey;
     this.rightKey = rightKey;
+    this.sprintKey = sprintKey;
   }
 
   // handleInput
@@ -64,6 +65,13 @@ class Predator {
     else {
       this.vy = 0;
     }
+
+    // Add the sprint option input
+    if (keyIsDown(this.sprintKey)) {
+    this.vx *= 2;
+    this.vy *= 2;
+      }
+
   }
 
   // move

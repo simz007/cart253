@@ -25,11 +25,13 @@ let bee;
 // Creates objects for the predator and three prey
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(500, 300, 5, color(200, 200, 0), 40, 38, 40, 37, 39);
 
-  // Create the lion as a new predators with diffrent keycodes as arguments
+  // Tiger moves with the arrows and sprint with the SHIFT key
+  tiger = new Predator(500, 300, 5, color(200, 200, 0), 40, 38, 40, 37, 39, 16);
+
+  // Create the lion as a new predator, moves with the AWSD keys and sprint with the F key
   // and a diffrent starting position and color
-  lion = new Predator(100, 200, 5, color(255, 0, 0), 40, 87, 83, 65, 68);
+  lion = new Predator(100, 200, 5, color(255, 0, 0), 40, 87, 83, 65, 68, 70);
 
   antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
   zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
