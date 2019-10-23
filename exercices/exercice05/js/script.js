@@ -12,13 +12,28 @@ let tiger;
 // lion moves with WASD keys
 let lion;
 
-
-
 // The three prey
 let antelope;
 let zebra;
 let bee;
 
+// Predators and prey images
+let lionImage;
+let tigerImage;
+let beeImage;
+let zebraImage;
+let antelopeImage;
+
+
+// add a function to load images
+function preload() {
+  lionImage = loadImage("assets/images/lion.png");
+  tigerImage = loadImage("assets/images/tiger.png");
+  beeImage = loadImage("assets/images/bee.png");
+  zebraImage = loadImage("assets/images/zebra.png");
+  antelopeImage = loadImage("assets/images/antelope.png");
+
+}
 // setup()
 //
 // Sets up a canvas
@@ -27,15 +42,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   // Tiger moves with the arrows and sprint with the SHIFT key
-  tiger = new Predator(500, 300, 5, color(200, 200, 0), 40, 38, 40, 37, 39, 16);
+  tiger = new Predator(1000, 300, 5, 60, 38, 40, 37, 39, 16, tigerImage);
 
   // Create the lion as a new predator, moves with the AWSD keys and sprint with the F key
   // and a diffrent starting position and color
-  lion = new Predator(100, 200, 5, color(255, 0, 0), 40, 87, 83, 65, 68, 70);
+  lion = new Predator(100, 200, 5, 60, 87, 83, 65, 68, 70, lionImage);
 
-  antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
-  zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
-  bee = new Prey(100, 100, 20, color(255, 255, 0), 10);
+  antelope = new Prey(100, 100, 10, 50, antelopeImage);
+  zebra = new Prey(100, 100, 8, 60, zebraImage);
+  bee = new Prey(100, 100, 20, 30, beeImage);
 }
 
 // draw()
@@ -46,17 +61,17 @@ function draw() {
   background(0);
 
   //Display preys eaten by the Tiger at the bottom of the screen
- textAlign(CENTER, CENTER);
- textSize(20);
- fill(255);
- text("Prey eaten by Tiger: " + tiger.preyEaten, width / 2, windowHeight - 50);
+  textAlign(CENTER, CENTER);
+  textSize(20);
+  fill(255);
+  text("Prey eaten by Tiger: " + tiger.preyEaten, width / 2, windowHeight - 50);
 
 
- //Display preys eaten by the Lion at the bottom of the screen
-textAlign(CENTER, CENTER);
-textSize(20);
-fill(255);
-text("Prey eaten by Lion: " + lion.preyEaten, width / 2, windowHeight - 20);
+  //Display preys eaten by the Lion at the bottom of the screen
+  textAlign(CENTER, CENTER);
+  textSize(20);
+  fill(255);
+  text("Prey eaten by Lion: " + lion.preyEaten, width / 2, windowHeight - 20);
 
   // Handle input for the tiger
   tiger.handleInput();
@@ -89,9 +104,5 @@ text("Prey eaten by Lion: " + lion.preyEaten, width / 2, windowHeight - 20);
   antelope.display();
   zebra.display();
   bee.display();
-
-
-
-
 
 }

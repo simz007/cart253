@@ -12,7 +12,7 @@ class Predator {
   // Either sets default values or uses the arguments provided
   // Added the Keycodes as arguments in the constructor
   //
-  constructor(x, y, speed, fillColor, radius, upKey, downKey, leftKey, rightKey, sprintKey) {
+  constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, sprintKey, predImage) {
     // Position
     this.x = x;
     this.y = y;
@@ -26,7 +26,8 @@ class Predator {
     this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 1;
     // Display properties
-    this.fillColor = fillColor;
+    this.predImage = predImage;
+
     this.radius = this.health; // Radius is defined in terms of health
     // Property to Keep track of how many prey eaten
     this.preyEaten = 0;
@@ -135,22 +136,23 @@ class Predator {
   //
   // Draw the predator as an ellipse on the canvas
   // with a radius the same size as its current health.
-  display() {
+    display() {
+    push();
+    noStroke();
+    this.radius = this.health;
+    imageMode(CENTER);
     // added if statemnt to diplay the predator and the number of prey eaten
     //only if it's still alive
     if (this.radius > 0) {
-    push();
-    noStroke();
-    fill(this.fillColor);
-    this.radius = this.health;
-    ellipse(this.x, this.y, this.radius * 2);
-    // Display how many prey each predator has eaten
-    textAlign(CENTER,CENTER);
-    textSize(20);
-    fill(255);
-    // position the text in the center of the predator
-    text(this.preyEaten,this.x,this.y);
-    pop();
+    image(this.predImage, this.x, this.y, this.radius * 2, this.radius * 2);
+
+      // Display how many prey each predator has eaten
+      textAlign(CENTER, CENTER);
+      textSize(20);
+      fill(255);
+      // position the text in the center of the predator
+      text(this.preyEaten, this.x, this.y);
+      pop();
     }
   }
 }
