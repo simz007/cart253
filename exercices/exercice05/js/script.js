@@ -46,7 +46,7 @@ function setup() {
 
   // Create the lion as a new predator, moves with the AWSD keys and sprint with the F key
   // and a diffrent starting position and color
-  lion = new Predator(100, 200, 5, 60, 87, 83, 65, 68, 70, lionImage);
+  lion = new Predator(600, 200, 5, 60, 87, 83, 65, 68, 70, lionImage);
 
   antelope = new Prey(100, 100, 10, 50, antelopeImage);
   zebra = new Prey(100, 100, 8, 60, zebraImage);
