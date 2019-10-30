@@ -54,5 +54,5 @@ function draw() {
   tiger.display();
   antelope.display();///FIXED: missing e at the end
   zebra.display();///Fixed: display was misspelled
-  b.display();
+  bee.display();///FIXED: bee not b
 }
