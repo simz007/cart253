@@ -14,7 +14,7 @@ class Prey {  ////FIXED: class Not glass
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, why, speed, fillColor, radius) {
+  constructor(x, y, speed, fillColor, radius) { ////FIXED: y Not why
     // Position
     this.x = x;
     this.y = y;
