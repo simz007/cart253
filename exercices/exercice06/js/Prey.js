@@ -69,7 +69,7 @@ class Prey {  ////FIXED: class Not glass
         this.y += height;
       }
       else if (this.y > height) {
-        this.y -= hight;
+        this.y -= height; ////FIXED: height not hight
       }
     }
 
@@ -82,7 +82,7 @@ class Prey {  ////FIXED: class Not glass
       noStroke();
       fill(this.fillColor);
       this.radius = this.health;
-      ellipse(this.x, this.y, this.radius * "two");
+      ellipse(this.x, this.y, this.radius * 2); ////FIXED: 2 not two
       pop();
     }
 
