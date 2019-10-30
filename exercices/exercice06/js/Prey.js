@@ -48,7 +48,7 @@ class Prey {  ////FIXED: class Not glass
     this.tx += 0.01;
     this.ty += 0.01;
     // Handle wrapping
-    this.handleWrapping();////FIXED: handleWrapping was missspelled 
+    this.handleWrapping();////FIXED: handleWrapping was missspelled
   } ////FIXED : was missing closing brakket
 
 
@@ -58,7 +58,7 @@ class Prey {  ////FIXED: class Not glass
     // wraps it to the other side if so
     handleWrapping() {
       // Off the left or right
-      if (this.x > 0) {
+      if (this.x < 0) { ////Fixed : we are cheking if it's < 0 not >
         this.x += width;
       }
       else if (this.x > width) {
