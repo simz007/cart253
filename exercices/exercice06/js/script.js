@@ -39,7 +39,7 @@ function draw() {
   background(0); //// Fixed: missing d to background
 
   // Handle input for the tiger
-
+  tiger.handleInput();/// Missing the handleInput function for the tiger 
   // Move all the "animals"
   tiger.move();
   antelope.move();
