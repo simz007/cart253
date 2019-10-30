@@ -39,7 +39,7 @@ function draw() {
   background(0); //// Fixed: missing d to background
 
   // Handle input for the tiger
-  tiger.handleInput();/// Missing the handleInput function for the tiger 
+  tiger.handleInput();/// Missing the handleInput function for the tiger
   // Move all the "animals"
   tiger.move();
   antelope.move();
@@ -52,7 +52,7 @@ function draw() {
 
   // Display all the "animals"
   tiger.display();
-  antelop.display();
+  antelope.display();///FIXED: missing e at the end
   zebra.disploy();
   b.display();
 }
