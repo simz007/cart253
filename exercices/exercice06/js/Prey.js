@@ -48,7 +48,7 @@ class Prey {  ////FIXED: class Not glass
     this.tx += 0.01;
     this.ty += 0.01;
     // Handle wrapping
-    this.handleWrapping();
+    this.handleWrapping();////FIXED: handleWrapping was missspelled 
   } ////FIXED : was missing closing brakket
 
 
