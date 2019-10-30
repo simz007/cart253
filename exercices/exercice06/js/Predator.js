@@ -73,7 +73,7 @@ class Predator {
   move() {
     // Update position
     this.x += this.vx;////Fixed:+= , not =
-    this.y += this.vy;////Fixed:+= , not =
+    this.y += this.vy;////FIXED: += , not =
     // Update health
     this.health = this.health - this.healthLossPerMove;
     this.health = constrain(this.health, 0, this.maxHealth);
