@@ -53,6 +53,6 @@ function draw() {
   // Display all the "animals"
   tiger.display();
   antelope.display();///FIXED: missing e at the end
-  zebra.disploy();
+  zebra.display();///Fixed: display was misspelled
   b.display();
 }
