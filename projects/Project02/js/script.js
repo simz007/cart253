@@ -23,6 +23,13 @@ let beeImage;
 let zebraImage;
 let antelopeImage;
 
+// Add variables for the sounds
+let drumSound;
+let tigerSound;
+
+
+
+
 // create the function preload to preload images and sounds
 
 function preload(){
@@ -36,6 +43,10 @@ function preload(){
   zebraImage = loadImage("assets/images/zebra.png");
   antelopeImage = loadImage("assets/images/antelope.png");
 
+  // Preload My sounds
+  drumSound = loadSound('assets/sounds/jungle.mp3');
+  tigerSound = loadSound('assets/sounds/roar.mp3');
+
 }
 
 
@@ -46,11 +57,19 @@ function preload(){
 // Creates objects for the predator and three prey
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(width/2, height/2, 7, 70, tigerImage);
+  tiger = new Predator(width/2, height/2, 7, 80, tigerImage);
   antelope = new Prey(100, 100, 10, 60, antelopeImage);
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
+  //Setting up background sound
+  drumSound.loop();
 }
+
+
+
+
+
+
 
 // draw()
 //
