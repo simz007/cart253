@@ -122,7 +122,7 @@ class Predator {
 
   // display
   //
-  // Draw the predator as an ellipse on the canvas
+  // Draw the predator as a tiger image
   // with a radius the same size as its current health.
   display() {
     push();
@@ -131,6 +131,9 @@ class Predator {
     // Display predator as an image only whyle it's alive
     imageMode(CENTER);
     if (this.radius > 0) {
+    // map the alpha value to the health of the tiger and use it for display
+    let alpha = map(this.health,0,this.maxHealth,0,255);
+    tint(255,alpha);
     image(this.predImage, this.x, this.y, this.radius * 2, this.radius * 2);}
     pop();
   }

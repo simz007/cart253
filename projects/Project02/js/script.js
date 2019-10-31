@@ -57,7 +57,7 @@ function preload(){
 // Creates objects for the predator and three prey
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(width/2, height/2, 7, 80, tigerImage);
+  tiger = new Predator(width/2, height/2, 7, 90, tigerImage);
   antelope = new Prey(100, 100, 10, 60, antelopeImage);
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
