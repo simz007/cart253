@@ -49,8 +49,6 @@ function preload(){
 
 }
 
-
-
 // setup()
 //
 // Sets up a canvas
@@ -66,17 +64,20 @@ function setup() {
 }
 
 
-
-
-
-
-
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
   // set the background to the forest image
   image(bgImage, 0, 0, width, height);
+
+  //Display preys eaten by the Tiger at the bottom of the screen
+  textAlign(CENTER, CENTER);
+  textFont("Impact");
+  textSize(50);
+  fill(17,59,8);
+  text("PREY EATEN: " + tiger.preyEaten, width / 2, windowHeight - 50);
+
 
   // Handle input for the tiger
   tiger.handleInput();
@@ -100,5 +101,22 @@ function draw() {
 
   // draw the tree as a Foreground
   image(treeImg, 0, 0, width, height);
+  // Display the energy bar
+  energyBar();
+}
+
+// Create a fuction for displaying an Energy bar that represents player Health
+// map the player health to the size of the background and call the fuction in draw
+function energyBar(){
+  let energySize;
+  energySize = map(tiger.health,0,tiger.maxHealth,0,300);
+  push();
+  fill (255, 0, 0);
+  rect(10, 10, 300, 25);
+
+  fill(0, 255, 0);
+  rect(10, 10,energySize, 25);
+
+  pop()
 
 }

@@ -31,6 +31,8 @@ class Predator {
     this.downKey = DOWN_ARROW;
     this.leftKey = LEFT_ARROW;
     this.rightKey = RIGHT_ARROW;
+    // Property to Keep track of how many prey eaten
+    this.preyEaten = 0;
   }
 
   // handleInput
@@ -116,6 +118,9 @@ class Predator {
       if (prey.health < 20) {
         prey.reset();
         tigerSound.play();
+      // change prey Eaten by adding the value 1 and keep track of it
+      console.log("Prey Eaten: " + this.preyEaten);
+      this.preyEaten += 1;
       }
     }
   }
