@@ -22,7 +22,7 @@ class Predator {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.healthLossPerMove = 0.1;
-    this.healthGainPerEat = 1;
+    this.healthGainPerEat = 0.7;
     // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.predImage = predImage;
@@ -113,7 +113,7 @@ class Predator {
       this.health += this.healthGainPerEat;
       this.health = constrain(this.health, 0, this.maxHealth);
       // Decrease prey health by the same amount
-      prey.health -= this.healthGainPerEat;
+      prey.health -= prey.HealthLoss;
       // Check if the prey died and reset it if so
       if (prey.health < 20) {
         prey.reset();
@@ -125,6 +125,13 @@ class Predator {
     }
   }
 
+
+  updateHealth() {
+    if (this.health === 0) {
+      // If so, the game is over
+      gameOver = true;
+    }
+  }
   // display
   //
   // Draw the predator as a tiger image

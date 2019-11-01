@@ -24,6 +24,7 @@ class Prey {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
+    this.HealthLoss = 1
     // Display properties
     this.preyImage = preyImage;
     this.radius = this.health;

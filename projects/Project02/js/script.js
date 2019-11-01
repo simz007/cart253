@@ -5,6 +5,13 @@
 // The predator chases the prey using the arrow keys and consumes them.
 // The predator loses health over time, so must keep eating to survive.
 
+
+// Track whether the game is over
+let gameOver = false;
+
+// To let the game start with an action
+let state = "START";
+
 // Our predator
 let tiger;
 
@@ -13,10 +20,15 @@ let antelope;
 let zebra;
 let bee;
 
+// the starting background
+let startImg
+
 // The background Image
 let bgImage;
+
 // The Foreground image of the tree
 let treeImg;
+
 // Predators and prey images
 let tigerImage;
 let beeImage;
@@ -33,9 +45,10 @@ let tigerSound;
 // create the function preload to preload images and sounds
 
 function preload(){
-  // Load Forest background and foreground tree
+  // Load Forest background and foreground tree and starting background
   bgImage = loadImage("assets/images/forest.png");
   treeImg = loadImage("assets/images/tree.png");
+  startImg = loadImage("assets/images/StartScreen.png");
 
   // load Predators and prey images
   tigerImage = loadImage("assets/images/tiger.png");
@@ -59,10 +72,12 @@ function setup() {
   antelope = new Prey(100, 100, 10, 60, antelopeImage);
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
-  //Setting up background sound
-  drumSound.loop();
 }
 
+// Setting up background sound
+function setupSound() {
+  drumSound.loop();
+}
 
 // draw()
 //
@@ -71,6 +86,12 @@ function draw() {
   // set the background to the forest image
   image(bgImage, 0, 0, width, height);
 
+  if (state === "START") {
+  image(startImg, 0, 0, width, height);
+
+}
+
+else if (state === "PLAY") {
   //Display preys eaten by the Tiger at the bottom of the screen
   textAlign(CENTER, CENTER);
   textFont("Impact");
@@ -93,6 +114,9 @@ function draw() {
   tiger.handleEating(zebra);
   tiger.handleEating(bee);
 
+ // call the function to check if tiger is dead
+  tiger.updateHealth();
+
   // Display all the "animals"
   tiger.display();
   antelope.display();
@@ -103,6 +127,7 @@ function draw() {
   image(treeImg, 0, 0, width, height);
   // Display the energy bar
   energyBar();
+}
 }
 
 // Create a fuction for displaying an Energy bar that represents player Health
@@ -120,3 +145,12 @@ function energyBar(){
   pop()
 
 }
+
+
+// Create an action to allow the game to start and music to play after clicking the mouse
+  function mousePressed() {
+    if (state === "START") {
+      state = "PLAY";
+      setupSound();
+    }
+  }
