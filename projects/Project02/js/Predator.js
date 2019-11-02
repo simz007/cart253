@@ -126,6 +126,8 @@ class Predator {
   }
 
 
+// Add updateHealth function to chek if the tiger is dead and let the program
+// know it's game over
   updateHealth() {
     if (this.health === 0) {
       // If so, the game is over
@@ -144,7 +146,7 @@ class Predator {
     imageMode(CENTER);
     if (this.radius > 0) {
     // map the alpha value to the health of the tiger and use it for display
-    let alpha = map(this.health,0,this.maxHealth,0,255);
+    let alpha = map(this.health,0,this.maxHealth,75,255);
     tint(255,alpha);
     image(this.predImage, this.x, this.y, this.radius * 2, this.radius * 2);}
     pop();

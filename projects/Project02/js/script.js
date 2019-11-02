@@ -21,7 +21,10 @@ let zebra;
 let bee;
 
 // the starting background
-let startImg
+let startImg;
+
+// the gameOver background
+let endImg;
 
 // The background Image
 let bgImage;
@@ -44,11 +47,12 @@ let tigerSound;
 
 // create the function preload to preload images and sounds
 
-function preload(){
+function preload() {
   // Load Forest background and foreground tree and starting background
   bgImage = loadImage("assets/images/forest.png");
   treeImg = loadImage("assets/images/tree.png");
   startImg = loadImage("assets/images/StartScreen.png");
+  endImg = loadImage("assets/images/endScreen.png");
 
   // load Predators and prey images
   tigerImage = loadImage("assets/images/tiger.png");
@@ -68,7 +72,7 @@ function preload(){
 // Creates objects for the predator and three prey
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(width/2, height/2, 7, 90, tigerImage);
+  tiger = new Predator(width / 2, height / 2, 7, 90, tigerImage);
   antelope = new Prey(100, 100, 10, 60, antelopeImage);
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
@@ -87,60 +91,64 @@ function draw() {
   image(bgImage, 0, 0, width, height);
 
   if (state === "START") {
-  image(startImg, 0, 0, width, height);
+    image(startImg, 0, 0, width, height);
 
-}
+  } else if (state === "PLAY") {
 
-else if (state === "PLAY") {
-  //Display preys eaten by the Tiger at the bottom of the screen
-  textAlign(CENTER, CENTER);
-  textFont("Impact");
-  textSize(50);
-  fill(17,59,8);
-  text("PREY EATEN: " + tiger.preyEaten, width / 2, windowHeight - 50);
+    if (!gameOver) {
+      //Display preys eaten by the Tiger at the bottom of the screen
+      textAlign(CENTER, CENTER);
+      textFont("Impact");
+      textSize(50);
+      fill(17, 59, 8);
+      text("PREY EATEN: " + tiger.preyEaten, width / 2, windowHeight - 50);
 
 
-  // Handle input for the tiger
-  tiger.handleInput();
+      // Handle input for the tiger
+      tiger.handleInput();
 
-  // Move all the "animals"
-  tiger.move();
-  antelope.move();
-  zebra.move();
-  bee.move();
+      // Move all the "animals"
+      tiger.move();
+      antelope.move();
+      zebra.move();
+      bee.move();
 
-  // Handle the tiger eating any of the prey
-  tiger.handleEating(antelope);
-  tiger.handleEating(zebra);
-  tiger.handleEating(bee);
+      // Handle the tiger eating any of the prey
+      tiger.handleEating(antelope);
+      tiger.handleEating(zebra);
+      tiger.handleEating(bee);
 
- // call the function to check if tiger is dead
-  tiger.updateHealth();
+      // call the function to check if tiger is dead
+      tiger.updateHealth();
 
-  // Display all the "animals"
-  tiger.display();
-  antelope.display();
-  zebra.display();
-  bee.display();
+      // Display all the "animals"
+      tiger.display();
+      antelope.display();
+      zebra.display();
+      bee.display();
 
-  // draw the tree as a Foreground
-  image(treeImg, 0, 0, width, height);
-  // Display the energy bar
-  energyBar();
-}
+      // draw the tree as a Foreground
+      image(treeImg, 0, 0, width, height);
+      // Display the energy bar
+      energyBar();
+    } else {
+      showGameOver();
+
+    }
+  }
 }
 
 // Create a fuction for displaying an Energy bar that represents player Health
 // map the player health to the size of the background and call the fuction in draw
-function energyBar(){
+function energyBar() {
   let energySize;
-  energySize = map(tiger.health,0,tiger.maxHealth,0,300);
+  energySize = map(tiger.health, 0, tiger.maxHealth, 0, 300);
   push();
-  fill (255, 0, 0);
+  fill(255, 0, 0);
   rect(10, 10, 300, 25);
 
   fill(0, 255, 0);
-  rect(10, 10,energySize, 25);
+  rect(10, 10, energySize, 25);
 
   pop()
 
@@ -148,9 +156,26 @@ function energyBar(){
 
 
 // Create an action to allow the game to start and music to play after clicking the mouse
-  function mousePressed() {
-    if (state === "START") {
-      state = "PLAY";
-      setupSound();
-    }
+function mousePressed() {
+  if (state === "START") {
+    state = "PLAY";
+    setupSound();
   }
+}
+
+// Create a function to show gameover screen
+function showGameOver() {
+  // Set up the font
+  image(endImg, 0, 0, width, height);
+  textSize(32);
+  textAlign(CENTER, CENTER);
+  fill(0);
+  drumSound.stop();
+  // // Set up the text to display
+  // let gameOverText = "GAME OVER PUFFY\n"; // \n means "new line"
+  // gameOverText = gameOverText + "You ate " + preyEaten + " fish\n";
+  // gameOverText = gameOverText + "Swim faster next time!."
+  // // Display it in the centre of the screen
+  // text(gameOverText, width / 2, height / 2);
+
+}
