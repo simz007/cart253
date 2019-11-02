@@ -161,21 +161,39 @@ function mousePressed() {
     state = "PLAY";
     setupSound();
   }
+
+if (gameOver === true) {
+        resetGame();
+      }
 }
 
 // Create a function to show gameover screen
 function showGameOver() {
+  push();
   // Set up the font
   image(endImg, 0, 0, width, height);
-  textSize(32);
-  textAlign(CENTER, CENTER);
-  fill(0);
+  textSize(80);
+  textAlign(LEFT);
+  fill(255);
   drumSound.stop();
-  // // Set up the text to display
-  // let gameOverText = "GAME OVER PUFFY\n"; // \n means "new line"
-  // gameOverText = gameOverText + "You ate " + preyEaten + " fish\n";
-  // gameOverText = gameOverText + "Swim faster next time!."
-  // // Display it in the centre of the screen
-  // text(gameOverText, width / 2, height / 2);
+  // Set up the text to display
+  let gameOverText = "YOU DIED\n"; // \n means "new line"
+  gameOverText = gameOverText + "YOU ATE " + tiger.preyEaten + " PREY \n";
+  gameOverText = gameOverText + "THE COBRAS BIT YOU";
+  
+  text(gameOverText, 100, 700);
+  pop();
+}
+
+// Reset the game to the START state with original values
+function resetGame() {
+  gameOver = false;
+  state = "START";
+  tiger = new Predator(width / 2, height / 2, 7, 90, tigerImage);
+  antelope = new Prey(100, 100, 10, 60, antelopeImage);
+  zebra = new Prey(300, 100, 8, 60, zebraImage);
+  bee = new Prey(800, 100, 20, 40, beeImage);
+  tiger.health = tiger.maxHealth;
+  tiger.preyEaten = 0;
 
 }
