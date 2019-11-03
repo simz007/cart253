@@ -150,7 +150,8 @@ function draw() {
       image(treeImg, 0, 0, width, height);
       // Display the energy bar
       energyBar();
-    } else {
+    }
+    else {
       showGameOver();
 
     }
@@ -198,7 +199,7 @@ function showGameOver() {
   // Set up the text to display
   let gameOverText = "YOU DIED\n"; // \n means "new line"
   gameOverText = gameOverText + "YOU ATE " + tiger.preyEaten + " PREY \n";
-  gameOverText = gameOverText + "THE COBRAS BIT YOU";
+  gameOverText = gameOverText + "COBRA BITES:  " + tiger.stings;
 
   text(gameOverText, 100, 700);
   pop();

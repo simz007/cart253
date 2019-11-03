@@ -33,6 +33,8 @@ class Predator {
     this.rightKey = RIGHT_ARROW;
     // Property to Keep track of how many prey eaten
     this.preyEaten = 0;
+    // Property to Keep track of how many cobra stings
+    this.stings = 0;
   }
 
   // handleInput
@@ -118,6 +120,8 @@ class Predator {
       if (cobra.health < 20) {
         cobra.reset();
         catSound.play();
+        // add 1 to sting
+        this.stings += 1;
 
       }
     }
