@@ -1,16 +1,14 @@
-// Prey
+// Cobra
 //
-// A class that represents a simple prey that moves
-// on screen based on a noise() function. It can move around
-// the screen and be consumed by Predator objects.
+// A class that represents a cobra
 
-class Prey {
+class Cobra {
 
   // constructor
   //
-  // Sets the initial values for the Prey's properties
+  // Sets the initial values for the cobra properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, radius, preyImage) {
+  constructor(x, y, speed, radius, cobraImg) {
     // Position
     this.x = x;
     this.y = y;
@@ -24,15 +22,15 @@ class Prey {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
-    this.HealthLoss = 1;
+    this.HealthLoss = radius;
     // Display properties
-    this.preyImage = preyImage;
+    this.cobraImg = cobraImg;
     this.radius = this.health;
   }
 
   // move
   //
-  // Sets velocity based on the noise() function and the Prey's speed
+  // Sets velocity based on the noise() function and the cobra's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
     // Set velocity via noise()
@@ -42,36 +40,34 @@ class Prey {
     this.x += this.vx;
     this.y += this.vy;
     // Update time properties
-    this.tx += 0.01;
-    this.ty += 0.01;
+    this.tx += 0.02;
+    this.ty += 0.02;
     // Handle wrapping
     this.handleWrapping();
   }
 
   // handleWrapping
   //
-  // Checks if the prey has gone off the canvas and
+  // Checks if the cobra has gone off the canvas and
   // wraps it to the other side if so
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
 
   // display
   //
-  // Draw the prey as an ellipse on the canvas
+  // Draw the cobra
   // with a radius the same size as its current health.
   display() {
     push();
@@ -79,9 +75,9 @@ class Prey {
     this.radius = this.health;
     // Display prey as an image
     if (this.radius > 20) {
-    imageMode(CENTER);
-    image(this.preyImage, this.x, this.y, this.radius*2, this.radius*2);
-  }
+      imageMode(CENTER);
+      image(this.cobraImg, this.x, this.y, this.radius * 2, this.radius * 2);
+    }
     pop();
   }
 

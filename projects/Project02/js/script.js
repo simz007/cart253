@@ -20,6 +20,10 @@ let antelope;
 let zebra;
 let bee;
 
+// The cobra
+let cobraOne;
+
+
 // the starting background
 let startImg;
 
@@ -38,9 +42,14 @@ let beeImage;
 let zebraImage;
 let antelopeImage;
 
+// Cobra images
+let cobraImg;
+
+
 // Add variables for the sounds
 let drumSound;
 let tigerSound;
+let catSound;
 
 
 
@@ -60,9 +69,12 @@ function preload() {
   zebraImage = loadImage("assets/images/zebra.png");
   antelopeImage = loadImage("assets/images/antelope.png");
 
+  cobraImg = loadImage("assets/images/cobra.png");
+
   // Preload My sounds
   drumSound = loadSound('assets/sounds/jungle.mp3');
   tigerSound = loadSound('assets/sounds/roar.mp3');
+  catSound = loadSound('assets/sounds/cat.wav');
 
 }
 
@@ -76,6 +88,8 @@ function setup() {
   antelope = new Prey(100, 100, 10, 60, antelopeImage);
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
+  cobraOne = new Cobra(800, 100, 30, 50, cobraImg);
+
 }
 
 // Setting up background sound
@@ -112,11 +126,15 @@ function draw() {
       antelope.move();
       zebra.move();
       bee.move();
+      cobraOne.move();
 
       // Handle the tiger eating any of the prey
       tiger.handleEating(antelope);
       tiger.handleEating(zebra);
       tiger.handleEating(bee);
+
+      // Handle the tiger getting bit by the cobra
+      tiger.handleSting(cobraOne);
 
       // call the function to check if tiger is dead
       tiger.updateHealth();
@@ -126,6 +144,7 @@ function draw() {
       antelope.display();
       zebra.display();
       bee.display();
+      cobraOne.display();
 
       // draw the tree as a Foreground
       image(treeImg, 0, 0, width, height);
@@ -180,7 +199,7 @@ function showGameOver() {
   let gameOverText = "YOU DIED\n"; // \n means "new line"
   gameOverText = gameOverText + "YOU ATE " + tiger.preyEaten + " PREY \n";
   gameOverText = gameOverText + "THE COBRAS BIT YOU";
-  
+
   text(gameOverText, 100, 700);
   pop();
 }
@@ -193,6 +212,7 @@ function resetGame() {
   antelope = new Prey(100, 100, 10, 60, antelopeImage);
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
+  cobraOne = new Cobra(800, 100, 30, 50, cobraImg);
   tiger.health = tiger.maxHealth;
   tiger.preyEaten = 0;
 

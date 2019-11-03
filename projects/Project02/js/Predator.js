@@ -23,7 +23,7 @@ class Predator {
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 0.7;
-    // Display properties
+    this.healthLossPerSting = 15;    // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.predImage = predImage;
     // Input properties
@@ -99,12 +99,38 @@ class Predator {
     }
   }
 
+  // handleSting
+  //Takes a Cobra object as an argument and checks if the predator
+  // overlaps it. If so, reset the cobra's position and decreases
+  // the predator's health by a bunch.
+
+  handleSting(cobra) {
+    // Calculate distance from this predator to the cobra
+    let d = dist(this.x, this.y, cobra.x, cobra.y);
+    // Check if the distance is less than their two radii (an overlap)
+    if (d < this.radius + cobra.radius) {
+      // Decrease predator health and constrain it to its possible range
+      this.health -= this.healthLossPerSting;
+      this.health = constrain(this.health, 0, this.maxHealth);
+      // Decrease prey health by the same amount
+      cobra.health -= cobra.HealthLoss;
+      // Check if the cobra bit and reset it if so
+      if (cobra.health < 20) {
+        cobra.reset();
+        catSound.play();
+
+      }
+    }
+
+  }
+
+
   // handleEating
-  //
   // Takes a Prey object as an argument and checks if the predator
   // overlaps it. If so, reduces the prey's health and increases
   // the predator's. If the prey dies, it gets reset.
   handleEating(prey) {
+
     // Calculate distance from this predator to the prey
     let d = dist(this.x, this.y, prey.x, prey.y);
     // Check if the distance is less than their two radii (an overlap)
@@ -124,6 +150,11 @@ class Predator {
       }
     }
   }
+
+
+
+
+
 
 
 // Add updateHealth function to chek if the tiger is dead and let the program
