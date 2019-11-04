@@ -45,6 +45,10 @@ let antelopeImage;
 // Cobra images
 let cobraImg;
 
+//How many cobras to simulate
+let numCobra = 3;
+//Empty erray to store the cobras
+let cobras = [];
 
 // Add variables for the sounds
 let drumSound;
@@ -89,6 +93,19 @@ function setup() {
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
   cobraOne = new Cobra(800, 100, 30, 50, cobraImg);
+
+  // Run a for loop numCobra times to generate each Cobra and put it in the array
+  for (let i = 0; i < numCobra; i++) {
+    // Generate (mostly) random values for the arguments of the cobra constructor
+    let x = random(0, width);
+    let y = random(0, height);
+    let speed = random(10, 30);
+    let radius = random(30, 50);
+    // Create a new Cobra objects with the random values
+    let newCobra = new Cobra(x, y, speed, radius, cobraImg);
+    // Add the new Prey object to the END of our array using push()
+    cobras.push(newCobra);
+  }
 
 }
 
@@ -136,6 +153,7 @@ function draw() {
       // Handle the tiger getting bit by the cobra
       tiger.handleSting(cobraOne);
 
+
       // call the function to check if tiger is dead
       tiger.updateHealth();
 
@@ -145,6 +163,15 @@ function draw() {
       zebra.display();
       bee.display();
       cobraOne.display();
+
+    //Go through every cobra element in the array in order by index
+    for (let i = 0; i < cobras.length; i++) {
+      // And for each one, move it and display it and handleSting for the tiger
+      cobras[i].move();
+      cobras[i].display();
+      tiger.handleSting(cobras[i]);
+
+  }
 
       // draw the tree as a Foreground
       image(treeImg, 0, 0, width, height);

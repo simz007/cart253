@@ -107,6 +107,7 @@ class Predator {
   // the predator's health by a bunch.
 
   handleSting(cobra) {
+
     // Calculate distance from this predator to the cobra
     let d = dist(this.x, this.y, cobra.x, cobra.y);
     // Check if the distance is less than their two radii (an overlap)
