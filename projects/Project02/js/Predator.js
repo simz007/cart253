@@ -35,6 +35,11 @@ class Predator {
     this.preyEaten = 0;
     // Property to Keep track of how many cobra stings
     this.stings = 0;
+    //property for the energy speed
+    this.energySpeed = this.speed*2;
+    // property to set the speed back to it's original value after a cobra sting
+    this.originalSpeed = this.speed;
+
   }
 
   // handleInput
@@ -115,14 +120,17 @@ class Predator {
       // increase predator health and constrain it to its possible range
       this.health = this.maxHealth;
       this.health = constrain(this.health, 0, this.maxHealth);
-      // Decrease prey health by the same amount
+
+      // double the tiger speed after each drink
+      this.speed = this.energySpeed;
+
+      // so the drink looses it's health and disapears once consumed
       energy.health -= energy.maxHealth;
       // Check if the energy drink is consumed and dont reset it
       if (energy.health < 10) {
         // play roar sound after each enrgy drink consumption
           tigerSound.play();
-        // add 1 to sting
-        // this.stings += 1;
+
 
       }
     }
@@ -143,6 +151,8 @@ class Predator {
       // Decrease predator health and constrain it to its possible range
       this.health -= this.healthLossPerSting;
       this.health = constrain(this.health, 0, this.maxHealth);
+      // bring the speed back to original after each stings
+      this.speed = this.originalSpeed ;
       // Decrease prey health by the same amount
       cobra.health -= cobra.HealthLoss;
       // Check if the cobra bit and reset it if so
