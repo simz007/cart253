@@ -268,6 +268,21 @@ function resetGame() {
   zebra = new Prey(300, 100, 8, 60, zebraImage);
   bee = new Prey(800, 100, 20, 40, beeImage);
   cobraOne = new Cobra(800, 100, 30, 50, cobraImg);
+
+  // since the energy drink doest resetRafter consumption
+  //we have to rerun the loop in the rest game function
+  for (let i = 0; i < numEnergy; i++) {
+    // Generate (mostly) random values for the arguments of the Energy constructor
+    let x = random(0, width);
+    let y = random(0, height);
+    let speed = 10;
+    let radius = 40;
+    // Create a new Energy object with the random values
+    let newEnergy = new Energy(x, y, speed, radius, energyImg);
+    // Add the new energy drink object to the END of our array using push()
+    energy.push(newEnergy);
+  }
+
   tiger.health = tiger.maxHealth;
   tiger.preyEaten = 0;
 
