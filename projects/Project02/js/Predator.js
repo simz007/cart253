@@ -112,7 +112,6 @@ class Predator {
   // the predator's health to max and makes him faster.
 
   handleDrink(energy) {
-
     // Calculate distance from this predator to the cobra
     let d = dist(this.x, this.y, energy.x, energy.y);
     // Check if the distance is less than their two radii (an overlap)
@@ -130,8 +129,6 @@ class Predator {
       if (energy.health < 10) {
         // play roar sound after each enrgy drink consumption
           tigerSound.play();
-
-
       }
     }
 

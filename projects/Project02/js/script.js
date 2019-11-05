@@ -184,28 +184,27 @@ function draw() {
       bee.display();
       cobraOne.display();
 
-    //Go through every cobra element in the array in order by index
-    for (let i = 0; i < cobras.length; i++) {
-      // And for each one, move it and display it and handleSting for the tiger
-      cobras[i].move();
-      cobras[i].display();
-      tiger.handleSting(cobras[i]);
-  }
+      //Go through every cobra element in the array in order by index
+      for (let i = 0; i < cobras.length; i++) {
+        // And for each one, move it and display it and handleSting for the tiger
+        cobras[i].move();
+        cobras[i].display();
+        tiger.handleSting(cobras[i]);
+      }
 
-  //Go through every Energy element in the array in order by index
-  for (let i = 0; i < energy.length; i++) {
-    // And for each one, move it and display it and handleDrink for the tiger
-    energy[i].move();
-    energy[i].display();
-    tiger.handleDrink(energy[i]);
-}
+      //Go through every Energy element in the array in order by index
+      for (let i = 0; i < energy.length; i++) {
+        // And for each one, move it and display it and handleDrink for the tiger
+        energy[i].move();
+        energy[i].display();
+        tiger.handleDrink(energy[i]);
+      }
 
       // draw the tree as a Foreground
       image(treeImg, 0, 0, width, height);
       // Display the energy bar
       energyBar();
-    }
-    else {
+    } else {
       showGameOver();
 
     }
@@ -228,7 +227,6 @@ function energyBar() {
 
 }
 
-
 // Create an action to allow the game to start and music to play after clicking the mouse
 function mousePressed() {
   if (state === "START") {
@@ -236,9 +234,9 @@ function mousePressed() {
     setupSound();
   }
 
-if (gameOver === true) {
-        resetGame();
-      }
+  if (gameOver === true) {
+    resetGame();
+  }
 }
 
 // Create a function to show gameover screen
@@ -285,5 +283,4 @@ function resetGame() {
 
   tiger.health = tiger.maxHealth;
   tiger.preyEaten = 0;
-
 }
