@@ -45,6 +45,9 @@ let antelopeImage;
 // Cobra images
 let cobraImg;
 
+// Energy Drink image
+let energyImg;
+
 //How many cobras to simulate
 let numCobra = 3;
 //Empty erray to store the cobras
@@ -54,8 +57,6 @@ let cobras = [];
 let drumSound;
 let tigerSound;
 let catSound;
-
-
 
 
 // create the function preload to preload images and sounds
@@ -74,6 +75,7 @@ function preload() {
   antelopeImage = loadImage("assets/images/antelope.png");
 
   cobraImg = loadImage("assets/images/cobra.png");
+  energyImg = loadImage("assets/images/energy.png");
 
   // Preload My sounds
   drumSound = loadSound('assets/sounds/jungle.mp3');
@@ -99,7 +101,7 @@ function setup() {
     // Generate (mostly) random values for the arguments of the cobra constructor
     let x = random(0, width);
     let y = random(0, height);
-    let speed = random(10, 30);
+    let speed = random(10, 15);
     let radius = random(30, 50);
     // Create a new Cobra objects with the random values
     let newCobra = new Cobra(x, y, speed, radius, cobraImg);
