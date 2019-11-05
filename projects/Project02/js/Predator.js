@@ -101,6 +101,34 @@ class Predator {
     }
   }
 
+  // handleDrink
+  //Takes a Energy drink object as an argument and checks if the predator
+  // overlaps it. If so,  increases
+  // the predator's health to max and makes him faster.
+
+  handleDrink(energy) {
+
+    // Calculate distance from this predator to the cobra
+    let d = dist(this.x, this.y, energy.x, energy.y);
+    // Check if the distance is less than their two radii (an overlap)
+    if (d < this.radius + energy.radius) {
+      // increase predator health and constrain it to its possible range
+      this.health = this.maxHealth;
+      this.health = constrain(this.health, 0, this.maxHealth);
+      // Decrease prey health by the same amount
+      energy.health -= energy.maxHealth;
+      // Check if the energy drink is consumed and dont reset it
+      if (energy.health < 10) {
+        // play roar sound after each enrgy drink consumption
+          tigerSound.play();
+        // add 1 to sting
+        // this.stings += 1;
+
+      }
+    }
+
+  }
+
   // handleSting
   //Takes a Cobra object as an argument and checks if the predator
   // overlaps it. If so, reset the cobra's position and decreases
@@ -129,7 +157,6 @@ class Predator {
 
   }
 
-
   // handleEating
   // Takes a Prey object as an argument and checks if the predator
   // overlaps it. If so, reduces the prey's health and increases
@@ -155,12 +182,6 @@ class Predator {
       }
     }
   }
-
-
-
-
-
-
 
 // Add updateHealth function to chek if the tiger is dead and let the program
 // know it's game over

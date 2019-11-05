@@ -1,6 +1,7 @@
 // Cobra
 //
-// A class that represents a cobra
+// A class that represents a cobra, each time the tiger gets bitten he loses health
+// and the cobra resets at a random place
 
 class Cobra {
 

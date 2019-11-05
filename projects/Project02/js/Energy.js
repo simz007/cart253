@@ -2,7 +2,8 @@
 //
 // A class that represents the energy drinks,
 // when the tiger drinks it it will give him max health and increase his speed
-// until he gets bitten by a cobra then speed will go back to original
+// until he gets bitten by a cobra then speed will go back to original, and the energy dont reset
+// there are only five of them
 
 class Energy {
 
@@ -83,17 +84,4 @@ class Energy {
     pop();
   }
 
-  // reset
-  //
-  // Set the position to a random location and reset health
-  // and radius back to default
-  reset() {
-    // Random position
-    this.x = random(0, width);
-    this.y = random(0, height);
-    // Default health
-    this.health = this.maxHealth;
-    // Default radius
-    this.radius = this.health;
-  }
 }

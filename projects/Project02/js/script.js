@@ -53,6 +53,11 @@ let numCobra = 3;
 //Empty erray to store the cobras
 let cobras = [];
 
+//How many Energy drink to simulate
+let numEnergy = 5;
+//Empty erray to store the energy drinks
+let energy = [];
+
 // Add variables for the sounds
 let drumSound;
 let tigerSound;
@@ -107,6 +112,19 @@ function setup() {
     let newCobra = new Cobra(x, y, speed, radius, cobraImg);
     // Add the new Prey object to the END of our array using push()
     cobras.push(newCobra);
+  }
+
+  // Run a for loop numEnergy times to generate each energy drink and put it in the array
+  for (let i = 0; i < numEnergy; i++) {
+    // Generate (mostly) random values for the arguments of the Energy constructor
+    let x = random(0, width);
+    let y = random(0, height);
+    let speed = 10;
+    let radius = 40;
+    // Create a new Energy object with the random values
+    let newEnergy = new Energy(x, y, speed, radius, energyImg);
+    // Add the new energy drink object to the END of our array using push()
+    energy.push(newEnergy);
   }
 
 }
@@ -172,8 +190,15 @@ function draw() {
       cobras[i].move();
       cobras[i].display();
       tiger.handleSting(cobras[i]);
-
   }
+
+  //Go through every Energy element in the array in order by index
+  for (let i = 0; i < energy.length; i++) {
+    // And for each one, move it and display it and handleDrink for the tiger
+    energy[i].move();
+    energy[i].display();
+    tiger.handleDrink(energy[i]);
+}
 
       // draw the tree as a Foreground
       image(treeImg, 0, 0, width, height);
