@@ -146,10 +146,12 @@ class Predator {
       this.speed = this.originalSpeed;
       // Decrease prey health by the same amount
       cobra.health -= cobra.HealthLoss;
+
       // Check if the cobra bit and reset it if so
       if (cobra.health < 20) {
         cobra.reset();
         catSound.play();
+
         // add 1 to sting
         this.stings += 1;
 
@@ -210,4 +212,7 @@ class Predator {
     }
     pop();
   }
+
+
+
 }

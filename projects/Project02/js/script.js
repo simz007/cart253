@@ -187,6 +187,8 @@ function draw() {
       // call the function to check if tiger is dead
       tiger.updateHealth();
 
+  
+
       // Display all the "animals"
       tiger.display();
       antelope.display();
@@ -280,7 +282,7 @@ function resetGame() {
   bee = new Prey(800, 100, 20, 40, beeImage);
   cobraOne = new Cobra(800, 100, 30, 50, cobraImg);
 
-  // since the energy drink doest resetRafter consumption
+  // since the energy drink doest reset after consumption
   //we have to rerun the loop in the rest game function
   for (let i = 0; i < numEnergy; i++) {
     // Generate (mostly) random values for the arguments of the Energy constructor
@@ -293,7 +295,7 @@ function resetGame() {
     // Add the new energy drink object to the END of our array using push()
     energy.push(newEnergy);
   }
-
+  // reset the health to full and num of prey eaten to 0
   tiger.health = tiger.maxHealth;
   tiger.preyEaten = 0;
 }
