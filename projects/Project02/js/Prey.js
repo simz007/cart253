@@ -56,15 +56,13 @@ class Prey {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
@@ -79,9 +77,9 @@ class Prey {
     this.radius = this.health;
     // Display prey as an image
     if (this.radius > 20) {
-    imageMode(CENTER);
-    image(this.preyImage, this.x, this.y, this.radius*2, this.radius*2);
-  }
+      imageMode(CENTER);
+      image(this.preyImage, this.x, this.y, this.radius * 2, this.radius * 2);
+    }
     pop();
   }
 

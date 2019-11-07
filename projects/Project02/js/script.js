@@ -27,6 +27,9 @@ let cobraOne;
 // the starting background
 let startImg;
 
+// the instruction background
+let instructionImg;
+
 // the gameOver background
 let endImg;
 
@@ -72,6 +75,7 @@ function preload() {
   treeImg = loadImage("assets/images/tree.png");
   startImg = loadImage("assets/images/StartScreen.png");
   endImg = loadImage("assets/images/endScreen.png");
+  instructionImg = loadImage("assets/images/instruction.png");
 
   // load Predators and prey images
   tigerImage = loadImage("assets/images/tiger.png");
@@ -106,7 +110,7 @@ function setup() {
     // Generate (mostly) random values for the arguments of the cobra constructor
     let x = random(0, width);
     let y = random(0, height);
-    let speed = random(10, 15);
+    let speed = random(5, 10);
     let radius = random(30, 50);
     // Create a new Cobra objects with the random values
     let newCobra = new Cobra(x, y, speed, radius, cobraImg);
@@ -143,8 +147,14 @@ function draw() {
 
   if (state === "START") {
     image(startImg, 0, 0, width, height);
+    }
 
-  } else if (state === "PLAY") {
+    else if (state === "INSTRUCTIONS") {
+        // displayInstructionsScreen();
+        image(instructionImg, 0, 0, width, height);
+      }
+
+   else if (state === "PLAY") {
 
     if (!gameOver) {
       //Display preys eaten by the Tiger at the bottom of the screen
@@ -204,9 +214,9 @@ function draw() {
       image(treeImg, 0, 0, width, height);
       // Display the energy bar
       energyBar();
-    } else {
+    }
+    else {
       showGameOver();
-
     }
   }
 }
@@ -230,9 +240,12 @@ function energyBar() {
 // Create an action to allow the game to start and music to play after clicking the mouse
 function mousePressed() {
   if (state === "START") {
-    state = "PLAY";
-    setupSound();
-  }
+    state = "INSTRUCTIONS";
+    }
+      else if (state === "INSTRUCTIONS") {
+      state = "PLAY";
+      setupSound();
+    }
 
   if (gameOver === true) {
     resetGame();

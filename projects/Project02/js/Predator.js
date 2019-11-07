@@ -23,7 +23,7 @@ class Predator {
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 0.7;
-    this.healthLossPerSting = 15;    // Display properties
+    this.healthLossPerSting = 15; // Display properties
     this.radius = this.health; // Radius is defined in terms of health
     this.predImage = predImage;
     // Input properties
@@ -36,7 +36,7 @@ class Predator {
     // Property to Keep track of how many cobra stings
     this.stings = 0;
     //property for the energy speed
-    this.energySpeed = this.speed*2;
+    this.energySpeed = this.speed * 2;
     // property to set the speed back to it's original value after a cobra sting
     this.originalSpeed = this.speed;
 
@@ -50,21 +50,17 @@ class Predator {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
       this.vx = -this.speed;
-    }
-    else if (keyIsDown(this.rightKey)) {
+    } else if (keyIsDown(this.rightKey)) {
       this.vx = this.speed;
-    }
-    else {
+    } else {
       this.vx = 0;
     }
     // Vertical movement
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
-    }
-    else if (keyIsDown(this.downKey)) {
+    } else if (keyIsDown(this.downKey)) {
       this.vy = this.speed;
-    }
-    else {
+    } else {
       this.vy = 0;
     }
   }
@@ -93,15 +89,13 @@ class Predator {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
@@ -128,7 +122,7 @@ class Predator {
       // Check if the energy drink is consumed and dont reset it
       if (energy.health < 10) {
         // play roar sound after each enrgy drink consumption
-          tigerSound.play();
+        tigerSound.play();
       }
     }
 
@@ -149,7 +143,7 @@ class Predator {
       this.health -= this.healthLossPerSting;
       this.health = constrain(this.health, 0, this.maxHealth);
       // bring the speed back to original after each stings
-      this.speed = this.originalSpeed ;
+      this.speed = this.originalSpeed;
       // Decrease prey health by the same amount
       cobra.health -= cobra.HealthLoss;
       // Check if the cobra bit and reset it if so
@@ -183,15 +177,15 @@ class Predator {
       if (prey.health < 20) {
         prey.reset();
         tigerSound.play();
-      // change prey Eaten by adding the value 1 and keep track of it
-      console.log("Prey Eaten: " + this.preyEaten);
-      this.preyEaten += 1;
+        // change prey Eaten by adding the value 1 and keep track of it
+        console.log("Prey Eaten: " + this.preyEaten);
+        this.preyEaten += 1;
       }
     }
   }
 
-// Add updateHealth function to chek if the tiger is dead and let the program
-// know it's game over
+  // Add updateHealth function to chek if the tiger is dead and let the program
+  // know it's game over
   updateHealth() {
     if (this.health === 0) {
       // If so, the game is over
@@ -209,10 +203,11 @@ class Predator {
     // Display predator as an image only whyle it's alive
     imageMode(CENTER);
     if (this.radius > 0) {
-    // map the alpha value to the health of the tiger and use it for display
-    let alpha = map(this.health,0,this.maxHealth,75,255);
-    tint(255,alpha);
-    image(this.predImage, this.x, this.y, this.radius * 2, this.radius * 2);}
+      // map the alpha value to the health of the tiger and use it for display
+      let alpha = map(this.health, 0, this.maxHealth, 75, 255);
+      tint(255, alpha);
+      image(this.predImage, this.x, this.y, this.radius * 2, this.radius * 2);
+    }
     pop();
   }
 }
