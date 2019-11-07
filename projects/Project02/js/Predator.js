@@ -213,6 +213,4 @@ class Predator {
     pop();
   }
 
-
-
 }
