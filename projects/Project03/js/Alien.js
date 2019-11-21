@@ -121,7 +121,7 @@ class Alien {
       // Check if the prey died and reset it if so
       if (astronaut.health < 20) {
         astronaut.reset();
-        // alienSound.play();
+        alienSound.play();
         // change prey Eaten by adding the value 1 and keep track of it
         console.log("Astronaut Eaten: " + this.preyEaten);
         this.preyEaten += 1;

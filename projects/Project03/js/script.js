@@ -62,8 +62,8 @@ function preload() {
   astroImg = loadImage("assets/images/astro.png");
 
   // // Preload My sounds
-  // gameSound = loadSound('assets/sounds/jungle.mp3');
-  // alienSound = loadSound('assets/sounds/roar.mp3');
+  gameSound = loadSound('assets/sounds/space.mp3');
+  alienSound = loadSound('assets/sounds/alien.mp3');
 
 }
 
@@ -92,9 +92,9 @@ function setup() {
 }
 
 // Setting up background sound
-// function setupSound() {
-//   gameSound.loop();
-// }
+function setupSound() {
+  gameSound.loop();
+}
 
 // draw()
 //
@@ -197,7 +197,7 @@ function showGameOver() {
   textSize(80);
   textAlign(LEFT);
   fill(255);
-  // gameSound.stop();
+  gameSound.stop();
   // Set up the text to display
   let gameOverText = "YOU DIED\n"; // \n means "new line"
   gameOverText = gameOverText + "YOU ATE " + alienPlayer.preyEaten + " ASTRONAUT \n";
