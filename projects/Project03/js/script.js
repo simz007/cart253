@@ -70,7 +70,7 @@ function preload() {
 // setup()
 //
 // Sets up a canvas
-// Creates objects for the predator and three prey
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
