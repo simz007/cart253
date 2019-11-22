@@ -56,7 +56,6 @@ class Stars {
   // Draw the stars as small circles
   //
   display() {
-    display() {
     push();
     noStroke();
     fill(this.fillColor);

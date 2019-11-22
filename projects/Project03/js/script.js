@@ -41,10 +41,17 @@ let numAstro = 5;
 //Empty erray to store the Astonauts
 let astronauts = [];
 
+//How many Stars to simulate
+let numStar = 100;
+//Empty erray to store the Stars
+let stars = [];
+
+
 
 // Add variables for the sounds
 let gameSound;
 let alienSound;
+
 
 
 
@@ -88,6 +95,21 @@ function setup() {
     // Add the new object to the END of our array using push()
     astronauts.push(newAstro);
   }
+
+  // Run a for loop numStar times to generate each star and put it in the array
+  for (let i = 0; i < numStar; i++) {
+    // Generate (mostly) random values for the arguments of the star constructor
+    let x = random(0, width);
+    let y = random(0, height);
+    let speed = random(5, 9);
+    let fillColor = color(255);
+    let radius = random(1, 3);
+    // Create a new star objects with the random values
+    let newStar = new Stars(x, y, speed, fillColor, radius);
+    // Add the new object to the END of our array using push()
+    stars.push(newStar);
+  }
+
 
 }
 
@@ -144,6 +166,13 @@ function draw() {
         astronauts[i].move();
         astronauts[i].display();
         alienPlayer.handleEating(astronauts[i]);
+        }
+
+      //Go through every star element in the array in order by index
+      for (let i = 0; i < stars.length; i++) {
+        // And for each one, move it and display it
+        stars[i].move();
+        stars[i].display();
       }
 
 
