@@ -33,11 +33,16 @@ let treeImg;
 // Alien Image
 let alienImg;
 
-// Astonaut images for Array
+// USA Astronaut images
 let astroImg;
 
-//How many Astronaut to simulate
-let numAstro = 5;
+// Russian Astronaut images
+let rusastroImg;
+
+//How many USA Astronaut to simulate
+let numAstrousa = 5;
+//How many Russian Astronaut to simulate
+let numAstrorus = 5;
 //Empty erray to store the Astonauts
 let astronauts = [];
 
@@ -64,9 +69,10 @@ function preload() {
   endImg = loadImage("assets/images/endScreen.jpg");
   instructionImg = loadImage("assets/images/instruction.jpg");
 
-  // load Alien and Astronaut images
+  // load Alien and Astronauts images
   alienImg = loadImage("assets/images/alien.png");
   astroImg = loadImage("assets/images/astro.png");
+  rusastroImg = loadImage("assets/images/astrorus.png");
 
   // // Preload My sounds
   gameSound = loadSound('assets/sounds/space.mp3');
@@ -83,17 +89,30 @@ function setup() {
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
 
 
-  // Run a for loop numAstro times to generate each astronaut and put it in the array
-  for (let i = 0; i < numAstro; i++) {
+  // Run a for loop numAstrousa times to generate each astronaut and put it in the array
+  for (let i = 0; i < numAstrousa; i++) {
     // Generate (mostly) random values for the arguments of the cobra constructor
     let x = random(0, width);
     let y = random(0, height);
     let speed = random(5, 10);
     let radius = random(30, 50);
     // Create a new Astronaut objects with the random values
-    let newAstro = new Astronaut(x, y, speed, radius, astroImg);
+    let newAstrousa = new Astronautusa(x, y, speed, radius);
     // Add the new object to the END of our array using push()
-    astronauts.push(newAstro);
+    astronauts.push(newAstrousa);
+  }
+
+  // Run a for loop numAstrorus times to generate each astronaut and put it in the array
+  for (let i = 0; i < numAstrorus; i++) {
+    // Generate (mostly) random values for the arguments of the cobra constructor
+    let x = random(0, width);
+    let y = random(0, height);
+    let speed = random(5, 10);
+    let radius = random(30, 50);
+    // Create a new Astronaut objects with the random values
+    let newAstrorus = new Astronautrus(x, y, speed, radius);
+    // Add the new object to the END of our array using push()
+    astronauts.push(newAstrorus);
   }
 
   // Run a for loop numStar times to generate each star and put it in the array
@@ -140,7 +159,7 @@ function draw() {
       //Display astronauts eaten by the alien at the bottom of the screen
       textAlign(CENTER, CENTER);
       textFont("Impact");
-      textSize(50);
+      textSize(35);
       fill(255);
       text("ASTRONAUT EATEN: " + alienPlayer.preyEaten, width / 2, windowHeight - 50);
 
@@ -223,7 +242,7 @@ function showGameOver() {
   push();
   // Set up the font
   image(endImg, 0, 0, width, height);
-  textSize(80);
+  textSize(50);
   textAlign(LEFT);
   fill(255);
   gameSound.stop();
@@ -232,7 +251,7 @@ function showGameOver() {
   gameOverText = gameOverText + "YOU ATE " + alienPlayer.preyEaten + " ASTRONAUT \n";
   gameOverText = gameOverText + "ASTEROIDS HIT:  " + alienPlayer.hits;
 
-  text(gameOverText, 100, 700);
+  text(gameOverText, 100, 800);
   pop();
 }
 

@@ -187,7 +187,7 @@ function draw() {
       // call the function to check if tiger is dead
       tiger.updateHealth();
 
-  
+
 
       // Display all the "animals"
       tiger.display();
