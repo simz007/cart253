@@ -47,7 +47,7 @@ let asteroid;
 
 
 //How many USA Astronaut to simulate
-let numAstrousa = 3;
+let numAstrousa = 4;
 //How many Russian Astronaut to simulate
 let numAstrorus = 3;
 //Empty erray to store the Astonauts

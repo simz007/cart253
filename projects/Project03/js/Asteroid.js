@@ -22,6 +22,7 @@ class Asteroid {
   // Display properties
   this.asteroidImg = asteroidImg;
   this.radius = radius;
+  this.HealthLoss = radius;
 }
 
   // move
@@ -64,6 +65,16 @@ display() {
   }
   pop();
 }
+
+// reset
+  //
+  // reset the asteroid after each distruction
+  reset() {
+    this.x = random(0, width);
+    this.y = 0;
+    this.vy = random(1, 20);
+    this.health = this.maxHealth;
+  }
 
 
 }

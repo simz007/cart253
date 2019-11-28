@@ -13,6 +13,10 @@ class Astronautrus extends Astronaut {
   constructor(x, y, speed, radius) {
     super(x, y, speed, radius);
 
+// Vriables to make the russian astronauts camouflage
+    this.visibleduration = 5;
+    this.visibletimer = 0;
+
   }
 
 
@@ -24,14 +28,26 @@ class Astronautrus extends Astronaut {
     push();
     noStroke();
     // Display properties
-    // this.astroImage = astroImg;
-    this.radius = this.health;
+    // with an if statement to create the effect of camouflage , make them appear And
+    // disappear to make them harder to catch
 
-    // Display prey as an image
-    if (this.radius > 20) {
-      imageMode(CENTER);
-      image(rusastroImg, this.x, this.y, this.radius * 2, this.radius * 2);
+    this.radius = this.health;
+    this.visibletimer -= deltaTime/1000;
+
+    if (this.visibletimer > 0) {
+      // Display prey as an image
+      if (this.radius > 20) {
+        imageMode(CENTER);
+        image(rusastroImg, this.x, this.y, this.radius * 2, this.radius * 2);
+      }
     }
+
+    if (this.visibletimer < -this.visibleduration){
+      this.visibletimer = this.visibleduration
+
+    }
+
+
     pop();
   }
 
