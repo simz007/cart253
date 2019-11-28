@@ -1,6 +1,6 @@
 // Astronaut
 //
-// A class that represents a simple astronaut that moves
+// A Parent class that represents a simple astronaut that moves
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by the alien.
 
@@ -25,9 +25,7 @@ class Astronaut {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.HealthLoss = 1;
-    // // Display properties
-    // this.astroImage = astroImage;
-    // this.radius = this.health;
+
   }
 
   // move
@@ -67,22 +65,7 @@ class Astronaut {
     }
   }
 
-  // // display
-  // //
-  // // Draw the prey as an ellipse on the canvas
-  // // with a radius the same size as its current health.
-  // display() {
-  //   push();
-  //   noStroke();
-  //   this.radius = this.health;
-  //   // Display prey as an image
-  //   if (this.radius > 20) {
-  //     imageMode(CENTER);
-  //     image(this.astroImage, this.x, this.y, this.radius * 2, this.radius * 2);
-  //   }
-  //   pop();
-  // }
-
+  
   // reset
   //
   // Set the position to a random location and reset health

@@ -86,7 +86,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
+  alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
 
 
   // Run a for loop numAstrousa times to generate each astronaut and put it in the array
