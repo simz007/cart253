@@ -39,10 +39,17 @@ let astroImg;
 // Russian Astronaut images
 let rusastroImg;
 
+// Asteroid image
+let asteroidImage;
+
+// Variable for the asteroid
+let asteroid;
+
+
 //How many USA Astronaut to simulate
-let numAstrousa = 5;
+let numAstrousa = 3;
 //How many Russian Astronaut to simulate
-let numAstrorus = 5;
+let numAstrorus = 3;
 //Empty erray to store the Astonauts
 let astronauts = [];
 
@@ -73,6 +80,8 @@ function preload() {
   alienImg = loadImage("assets/images/alien.png");
   astroImg = loadImage("assets/images/astro.png");
   rusastroImg = loadImage("assets/images/astrorus.png");
+  // load Asteroid image
+  asteroidImage = loadImage("assets/images/astero.png");
 
   // // Preload My sounds
   gameSound = loadSound('assets/sounds/space.mp3');
@@ -86,7 +95,10 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+// Creates objects
   alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
+  asteroid = new Asteroid(200,0, 5, 30, asteroidImage);
 
 
   // Run a for loop numAstrousa times to generate each astronaut and put it in the array
@@ -107,7 +119,7 @@ function setup() {
     // Generate (mostly) random values for the arguments of the cobra constructor
     let x = random(0, width);
     let y = random(0, height);
-    let speed = random(5, 10);
+    let speed = random(10, 13);
     let radius = random(30, 50);
     // Create a new Astronaut objects with the random values
     let newAstrorus = new Astronautrus(x, y, speed, radius);
@@ -177,6 +189,10 @@ function draw() {
 
       // Display the alien
       alienPlayer.display();
+
+      // Display and move the asteroid
+      asteroid.move();
+      asteroid.display();
 
 
       //Go through every Astronaut element in the array in order by index

@@ -11,7 +11,8 @@ class Astronautrus extends Astronaut {
   // Sets the initial values for the astronaut's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius) {
-    super(x, y, speed, radius)
+    super(x, y, speed, radius);
+
   }
 
 
