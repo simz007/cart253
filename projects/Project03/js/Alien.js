@@ -129,6 +129,33 @@ class Alien {
     }
   }
 
+
+  // handleHit
+  //Takes an Asteroid object as an argument and checks if the alien
+  // overlaps it. If so, reset the asteroid position and kills the alien
+
+  handleHit(asteroid) {
+
+    // Calculate distance from this alien to the asteroid
+    let d = dist(this.x, this.y, asteroid.x, asteroid.y);
+    // Check if the distance is less than their two radius (an overlap)
+    if (d < this.radius + asteroid.radius) {
+      // kill the alien when hit by asteroid
+      this.health = 0;
+
+      // Decrease prey health by the same amount
+      asteroid.health -= asteroid.HealthLoss;
+
+
+
+        // add 1 to hits
+        this.hits += 1;
+
+
+    }
+
+  }
+
   // Add updateHealth function to chek if the Alien is dead and let the program
   // know it's game over
   updateHealth() {

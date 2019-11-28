@@ -190,6 +190,8 @@ function draw() {
       // Display the alien
       alienPlayer.display();
 
+      alienPlayer.handleHit(asteroid);
+
       // Display and move the asteroid
       asteroid.move();
       asteroid.display();
@@ -276,6 +278,7 @@ function resetGame() {
   gameOver = false;
   state = "START";
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
+  asteroid = new Asteroid(200,0, 5, 30, asteroidImage);
 
 
   // reset the health to full and num of prey eaten to 0

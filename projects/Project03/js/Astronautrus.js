@@ -2,7 +2,8 @@
 //
 // A class that represents the russian astronauts that extends from the astronaut mother class
 // moves on screen based on a noise() function. It can move around
-// the screen and be consumed by the alien.
+// the screen and be consumed by the alien , it start by being hidden then it appears on screen, they are
+// so smart they learned how to camouflage in space
 
 class Astronautrus extends Astronaut {
 
