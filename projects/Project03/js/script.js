@@ -81,7 +81,7 @@ function preload() {
   astroImg = loadImage("assets/images/astro.png");
   rusastroImg = loadImage("assets/images/astrorus.png");
   // load Asteroid image
-  asteroidImage = loadImage("assets/images/astero.png");
+  asteroidImage = loadImage("assets/images/Astero.png");
 
   // // Preload My sounds
   gameSound = loadSound('assets/sounds/space.mp3');
