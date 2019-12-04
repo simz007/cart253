@@ -72,7 +72,7 @@ display() {
   reset() {
     this.x = random(0, width);
     this.y = 0;
-    this.vy = random(1, 20);
+    this.vy = random(1, 10);
     this.health = this.maxHealth;
   }
 

@@ -96,9 +96,9 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-// Creates objects
+  // Creates objects
   alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
-  asteroid = new Asteroid(200,0, 5, 30, asteroidImage);
+  asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
 
 
   // Run a for loop numAstrousa times to generate each astronaut and put it in the array
@@ -158,14 +158,10 @@ function draw() {
 
   if (state === "START") {
     image(startImg, 0, 0, width, height);
-    }
-
-    else if (state === "INSTRUCTIONS") {
-        // displayInstructionsScreen();
-        image(instructionImg, 0, 0, width, height);
-      }
-
-   else if (state === "PLAY") {
+  } else if (state === "INSTRUCTIONS") {
+    // displayInstructionsScreen();
+    image(instructionImg, 0, 0, width, height);
+  } else if (state === "PLAY") {
 
     if (!gameOver) {
       //Display astronauts eaten by the alien at the bottom of the screen
@@ -192,9 +188,12 @@ function draw() {
 
       alienPlayer.handleHit(asteroid);
 
+      alienPlayer.fireLaser(asteroid);
+
       // Display and move the asteroid
       asteroid.move();
       asteroid.display();
+      
 
 
       //Go through every Astronaut element in the array in order by index
@@ -203,7 +202,7 @@ function draw() {
         astronauts[i].move();
         astronauts[i].display();
         alienPlayer.handleEating(astronauts[i]);
-        }
+      }
 
       //Go through every star element in the array in order by index
       for (let i = 0; i < stars.length; i++) {
@@ -217,8 +216,7 @@ function draw() {
       // image(treeImg, 0, 0, width, height);
       // Display the energy bar
       energyBar();
-    }
-    else {
+    } else {
       showGameOver();
     }
   }
@@ -244,11 +242,10 @@ function energyBar() {
 function mousePressed() {
   if (state === "START") {
     state = "INSTRUCTIONS";
-    }
-      else if (state === "INSTRUCTIONS") {
-      state = "PLAY";
-      setupSound();
-    }
+  } else if (state === "INSTRUCTIONS") {
+    state = "PLAY";
+    setupSound();
+  }
 
   if (gameOver === true) {
     resetGame();
@@ -278,7 +275,7 @@ function resetGame() {
   gameOver = false;
   state = "START";
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
-  asteroid = new Asteroid(200,0, 5, 30, asteroidImage);
+  asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
 
 
   // reset the health to full and num of prey eaten to 0
