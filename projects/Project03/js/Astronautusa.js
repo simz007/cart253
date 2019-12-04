@@ -12,7 +12,7 @@ class Astronautusa extends Astronaut {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, radius) {
     super(x, y, speed, radius)
-    
+
   }
 
 

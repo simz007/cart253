@@ -193,7 +193,7 @@ function draw() {
       // Display and move the asteroid
       asteroid.move();
       asteroid.display();
-      
+
 
 
       //Go through every Astronaut element in the array in order by index
@@ -264,7 +264,7 @@ function showGameOver() {
   // Set up the text to display
   let gameOverText = "YOU DIED\n"; // \n means "new line"
   gameOverText = gameOverText + "YOU ATE " + alienPlayer.preyEaten + " ASTRONAUT \n";
-  gameOverText = gameOverText + "ASTEROIDS HIT:  " + alienPlayer.hits;
+  gameOverText = gameOverText + "ASTEROIDS DESTROYED:  " + alienPlayer.hits;
 
   text(gameOverText, 100, 800);
   pop();

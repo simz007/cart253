@@ -135,7 +135,7 @@ class Alien {
   // overlaps it. If so, reset the asteroid position and kills the alien
 
   handleHit(asteroid) {
-  // Calculate distance from this alien to the asteroid
+    // Calculate distance from this alien to the asteroid
     let d = dist(this.x, this.y, asteroid.x, asteroid.y);
     // Check if the distance is less than their two radius (an overlap)
     if (d < this.radius + asteroid.radius) {
@@ -152,23 +152,23 @@ class Alien {
   //Distroy the asteroids when firing a laser beam from the alien
   // at them using the mouse press function while in game
 
-  fireLaser(asteroid){
+  fireLaser(asteroid) {
     push();
     if (mouseIsPressed) {
       strokeWeight(12);
       stroke(0, 250, 0);
-      line(this.x, this.y - this.radius/2, mouseX + random(-5,5), mouseY + random(-5,5));
+      line(this.x, this.y - this.radius / 2, mouseX + random(-5, 5), mouseY + random(-5, 5));
 
       // Calculate the distance from alien to asteroid
       let d = dist(mouseX, mouseY, asteroid.x, asteroid.y);
       // Check if distance is less than their two radii
-      if (d <  asteroid.radius + 10) {
+      if (d < asteroid.radius + 10) {
         // destroy the asteroid
-      asteroid.health -= asteroid.HealthLoss;
-      // add 1 to hits
-      this.hits += 1;
-      // reset the asteroid
-      asteroid.reset();
+        asteroid.health -= asteroid.HealthLoss;
+        // add 1 to hits
+        this.hits += 1;
+        // reset the asteroid
+        asteroid.reset();
       }
     }
     pop();
