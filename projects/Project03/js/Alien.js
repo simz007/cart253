@@ -27,10 +27,10 @@ class Alien {
     this.radius = this.health; // Radius is defined in terms of health
     this.alienImage = alienImage;
     // Input properties
-    this.upKey = UP_ARROW;
-    this.downKey = DOWN_ARROW;
-    this.leftKey = LEFT_ARROW;
-    this.rightKey = RIGHT_ARROW;
+    this.upKey = 87;
+    this.downKey = 83;
+    this.leftKey = 65;
+    this.rightKey = 68;
     // Property to Keep track of how many Astronaut eaten
     this.preyEaten = 0;
     // Property to Keep track of how many asteroids shot
