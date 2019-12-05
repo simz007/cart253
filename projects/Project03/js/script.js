@@ -213,8 +213,8 @@ function draw() {
       // Display and move the life Bottle
       lifeBottle.move();
       lifeBottle.display();
-
-
+      // Call the handle drink function for the life bottle
+      alienPlayer.handleDrink(lifeBottle);
 
 
       //Go through every Astronaut element in the array in order by index

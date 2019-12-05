@@ -69,7 +69,7 @@ class Life {
 
   // reset
   //
-  // reset the asteroid after each distruction
+  // reset the life bottle after each consumption
   reset() {
     this.x = random(0, width);
     this.y = 0;
