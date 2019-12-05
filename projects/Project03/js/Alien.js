@@ -141,7 +141,8 @@ class Alien {
     if (d < this.radius + asteroid.radius) {
       // kill the alien when hit by asteroid
       this.health = 0;
-
+      // Play the died sound
+      diedSound.play();
       // Decrease prey health by the same amount
       asteroid.health -= asteroid.HealthLoss;
     }
@@ -196,13 +197,16 @@ class Alien {
       life.health -= life.maxHealth;
       // Check if the energy drink is consumed and dont reset it
       if (life.health < 10) {
-        // play roar sound after each enrgy drink consumption
-        // tigerSound.play();
-      }
+
+        // play the drink sound after each drink consumption
+        drinkSound.play();
+
+        // reset the life bottle
+        life.reset();
+
     }
-
   }
-
+}
   // Add updateHealth function to chek if the Alien is dead and let the program
   // know it's game over
   updateHealth() {

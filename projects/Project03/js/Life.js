@@ -15,7 +15,7 @@ class Life {
     this.y = y;
     // Velocity and speed
     this.vx = 0;
-    this.vy = random(1, 15);
+    this.vy = random(4, 15);
     this.speed = speed;
     // Health properties
     this.maxHealth = radius;
@@ -73,7 +73,7 @@ class Life {
   reset() {
     this.x = random(0, width);
     this.y = 0;
-    this.vy = random(1, 15);
+    this.vy = random(4, 15);
     this.health = this.maxHealth;
   }
 

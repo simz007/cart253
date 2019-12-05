@@ -70,6 +70,8 @@ let stars = [];
 let gameSound;
 let alienSound;
 let explosionSound;
+let drinkSound;
+let diedSound;
 
 
 
@@ -96,7 +98,9 @@ function preload() {
   gameSound = loadSound('assets/sounds/space.mp3');
   alienSound = loadSound('assets/sounds/alien.mp3');
   explosionSound = loadSound('assets/sounds/explosion.mp3');
-
+  drinkSound = loadSound('assets/sounds/yeah.mp3');
+  diedSound = loadSound('assets/sounds/no.mp3');
+  
 }
 
 // setup()
@@ -210,11 +214,13 @@ function draw() {
       secondAsteroid.move();
       secondAsteroid.display();
 
+      // Call the handle drink function for the life bottle
+      alienPlayer.handleDrink(lifeBottle);
+
       // Display and move the life Bottle
       lifeBottle.move();
       lifeBottle.display();
-      // Call the handle drink function for the life bottle
-      alienPlayer.handleDrink(lifeBottle);
+
 
 
       //Go through every Astronaut element in the array in order by index
@@ -298,6 +304,7 @@ function resetGame() {
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
+  lifeBottle = new Life(500, 0, 5, 30, lifeImg);
 
 
   // reset the health to full and num of prey eaten to 0
