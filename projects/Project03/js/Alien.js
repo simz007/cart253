@@ -23,7 +23,7 @@ class Alien {
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 0.7;
-    this.healthLossPerSting = 15; // Display properties
+    this.healthLoss = 0.1;
     this.radius = this.health; // Radius is defined in terms of health
     this.alienImage = alienImage;
     // Input properties
@@ -157,6 +157,8 @@ class Alien {
       strokeWeight(12);
       stroke(0, 250, 0);
       line(this.x, this.y - this.radius / 2, mouseX + random(-5, 5), mouseY + random(-5, 5));
+      // Decrease alien health every time he fires the laser
+      this.health -= this.healthLoss;
 
       // Calculate the distance from alien to asteroid
       let d = dist(mouseX, mouseY, asteroid.x, asteroid.y);
@@ -164,6 +166,8 @@ class Alien {
       if (d < asteroid.radius + 10) {
         // destroy the asteroid
         asteroid.health -= asteroid.HealthLoss;
+        // Increase alien health every time he destroys an asteroid
+        this.health += 10;
         // add 1 to hits
         this.hits += 1;
         // Play the explosion sound

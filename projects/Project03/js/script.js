@@ -42,8 +42,9 @@ let rusastroImg;
 // Asteroid image
 let asteroidImage;
 
-// Variable for the asteroid
+// Variable for the asteroids
 let asteroid;
+let secondAsteroid;
 
 
 //How many USA Astronaut to simulate
@@ -98,9 +99,10 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // Creates objects
+  // Creates Alien and Asteroid objects
   alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
+  secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
 
 
   // Run a for loop numAstrousa times to generate each astronaut and put it in the array
@@ -187,14 +189,17 @@ function draw() {
 
       // Display the alien
       alienPlayer.display();
-
+      // Call the handlehit and firelaser functions for both asteroids
       alienPlayer.handleHit(asteroid);
-
       alienPlayer.fireLaser(asteroid);
+      alienPlayer.handleHit(secondAsteroid);
+      alienPlayer.fireLaser(secondAsteroid);
 
-      // Display and move the asteroid
+      // Display and move the asteroids
       asteroid.move();
       asteroid.display();
+      secondAsteroid.move();
+      secondAsteroid.display();
 
 
 
@@ -278,6 +283,7 @@ function resetGame() {
   state = "START";
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
+  secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
 
 
   // reset the health to full and num of prey eaten to 0
