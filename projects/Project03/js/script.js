@@ -75,7 +75,7 @@ function preload() {
   // Load Forest background and foreground tree and starting background
   bgImage = loadImage("assets/images/space.jpg");
   startImg = loadImage("assets/images/StartScreen.png");
-  endImg = loadImage("assets/images/endScreen.jpg");
+  endImg = loadImage("assets/images/endScreen.png");
   instructionImg = loadImage("assets/images/instruction.jpg");
 
   // load Alien and Astronauts images
