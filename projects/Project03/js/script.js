@@ -42,10 +42,15 @@ let rusastroImg;
 // Asteroid image
 let asteroidImage;
 
+// life bottle image
+let lifeImg;
+
 // Variable for the asteroids
 let asteroid;
 let secondAsteroid;
 
+// Variable for the life Bottle
+let lifeBottle;
 
 //How many USA Astronaut to simulate
 let numAstrousa = 4;
@@ -84,6 +89,8 @@ function preload() {
   rusastroImg = loadImage("assets/images/astrorus.png");
   // load Asteroid image
   asteroidImage = loadImage("assets/images/Astero.png");
+  //Load life3 bottle image
+  lifeImg = loadImage("assets/images/life.png");
 
   // // Preload My sounds
   gameSound = loadSound('assets/sounds/space.mp3');
@@ -99,10 +106,12 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // Creates Alien and Asteroid objects
+  // Creates Alien,Asteroid and life bottle objects
   alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
+  lifeBottle = new Life(500, 0, 5, 30, lifeImg);
+
 
 
   // Run a for loop numAstrousa times to generate each astronaut and put it in the array
@@ -200,6 +209,11 @@ function draw() {
       asteroid.display();
       secondAsteroid.move();
       secondAsteroid.display();
+
+      // Display and move the life Bottle
+      lifeBottle.move();
+      lifeBottle.display();
+
 
 
 
