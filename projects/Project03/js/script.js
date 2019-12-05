@@ -63,6 +63,7 @@ let stars = [];
 // Add variables for the sounds
 let gameSound;
 let alienSound;
+let explosionSound;
 
 
 
@@ -86,6 +87,7 @@ function preload() {
   // // Preload My sounds
   gameSound = loadSound('assets/sounds/space.mp3');
   alienSound = loadSound('assets/sounds/alien.mp3');
+  explosionSound = loadSound('assets/sounds/explosion.mp3');
 
 }
 

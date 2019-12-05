@@ -144,7 +144,6 @@ class Alien {
 
       // Decrease prey health by the same amount
       asteroid.health -= asteroid.HealthLoss;
-
     }
   }
 
@@ -167,6 +166,8 @@ class Alien {
         asteroid.health -= asteroid.HealthLoss;
         // add 1 to hits
         this.hits += 1;
+        // Play the explosion sound
+        explosionSound.play();
         // reset the asteroid
         asteroid.reset();
       }
