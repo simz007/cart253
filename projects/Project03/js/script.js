@@ -213,6 +213,7 @@ function draw() {
       alienPlayer.fireLaser(asteroid);
       alienPlayer.handleHit(secondAsteroid);
       alienPlayer.fireLaser(secondAsteroid);
+      alienPlayer.handleHole(blackHole);
 
       // Display and move the asteroids
       asteroid.move();

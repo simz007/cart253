@@ -23,7 +23,7 @@ class Alien {
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 0.7;
-    this.healthLoss = 0.1;
+    this.healthLoss = 0.2;
     this.radius = this.health; // Radius is defined in terms of health
     this.alienImage = alienImage;
     // Input properties
@@ -206,6 +206,22 @@ class Alien {
       }
     }
   }
+
+  // handleHole
+  //Takes a Hole object as an argument and checks if the alien
+  // overlaps it. If so, decrease the alien's health
+
+  handleHole(holes) {
+    // Calculate distance from this alien to the holes
+    let d = dist(this.x, this.y, holes.x, holes.y);
+    // Check if the distance is less than their two radius (an overlap)
+    if (d < this.radius + holes.radius) {
+      // decrease alien's health when in contact
+      this.health -= this.healthLoss;
+
+    }
+  }
+
   // Add updateHealth function to chek if the Alien is dead and let the program
   // know it's game over
   updateHealth() {
