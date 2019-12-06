@@ -55,9 +55,9 @@ let secondAsteroid;
 // Variable for the life Bottle
 let lifeBottle;
 
-// Variable for the black hole
+// Variable for the black holes
 let blackHole;
-
+let secondHole;
 //How many USA Astronaut to simulate
 let numAstrousa = 4;
 //How many Russian Astronaut to simulate
@@ -123,7 +123,8 @@ function setup() {
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
-  blackHole = new Holes(400, 0, 5, 60, holeImg);
+  blackHole = new Holes(0, 100, 5, 60, holeImg);
+  secondHole = new Holes(0, 600, 5, 80, holeImg);
 
 
 
@@ -214,6 +215,7 @@ function draw() {
       alienPlayer.handleHit(secondAsteroid);
       alienPlayer.fireLaser(secondAsteroid);
       alienPlayer.handleHole(blackHole);
+      alienPlayer.handleHole(secondHole);
 
       // Display and move the asteroids
       asteroid.move();
@@ -228,9 +230,11 @@ function draw() {
       lifeBottle.move();
       lifeBottle.display();
 
-      // Display and move the black hole
+      // Display and move the black holes
       blackHole.move();
       blackHole.display();
+      secondHole.move();
+      secondHole.display();
 
       // Display the alien
       alienPlayer.display();
