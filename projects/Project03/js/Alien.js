@@ -180,10 +180,10 @@ class Alien {
     pop();
   }
   // handleDrink
-    //Takes a Life bottle object as an argument and checks if the predator
-    // overlaps it. If so,  increases the alien's health to max
+  //Takes a Life bottle object as an argument and checks if the predator
+  // overlaps it. If so,  increases the alien's health to max
 
-    handleDrink(life) {
+  handleDrink(life) {
     // Calculate distance from the alien to the life
     let d = dist(this.x, this.y, life.x, life.y);
     // Check if the distance is less than their two radii (an overlap)
@@ -203,10 +203,9 @@ class Alien {
 
         // reset the life bottle
         life.reset();
-
+      }
     }
   }
-}
   // Add updateHealth function to chek if the Alien is dead and let the program
   // know it's game over
   updateHealth() {

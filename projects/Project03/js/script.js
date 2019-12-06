@@ -45,12 +45,18 @@ let asteroidImage;
 // life bottle image
 let lifeImg;
 
+// Black hole image
+let holeImg;
+
 // Variable for the asteroids
 let asteroid;
 let secondAsteroid;
 
 // Variable for the life Bottle
 let lifeBottle;
+
+// Variable for the black hole
+let blackHole;
 
 //How many USA Astronaut to simulate
 let numAstrousa = 4;
@@ -93,6 +99,8 @@ function preload() {
   asteroidImage = loadImage("assets/images/Astero.png");
   //Load life3 bottle image
   lifeImg = loadImage("assets/images/life.png");
+  //Load black hole image
+  holeImg = loadImage("assets/images/hole.png");
 
   // // Preload My sounds
   gameSound = loadSound('assets/sounds/space.mp3');
@@ -100,7 +108,7 @@ function preload() {
   explosionSound = loadSound('assets/sounds/explosion.mp3');
   drinkSound = loadSound('assets/sounds/yeah.mp3');
   diedSound = loadSound('assets/sounds/no.mp3');
-  
+
 }
 
 // setup()
@@ -115,6 +123,7 @@ function setup() {
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
+  blackHole = new Holes(400, 0, 5, 60, holeImg);
 
 
 
@@ -199,9 +208,6 @@ function draw() {
       // call the function to check if the alien is dead
       alienPlayer.updateHealth();
 
-
-      // Display the alien
-      alienPlayer.display();
       // Call the handlehit and firelaser functions for both asteroids
       alienPlayer.handleHit(asteroid);
       alienPlayer.fireLaser(asteroid);
@@ -220,6 +226,13 @@ function draw() {
       // Display and move the life Bottle
       lifeBottle.move();
       lifeBottle.display();
+
+      // Display and move the black hole
+      blackHole.move();
+      blackHole.display();
+
+      // Display the alien
+      alienPlayer.display();
 
 
 
