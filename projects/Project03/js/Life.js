@@ -50,7 +50,6 @@ class Life {
     }
   }
 
-
   // display
   //
   // Draw the life bottle
@@ -76,6 +75,4 @@ class Life {
     this.vy = random(4, 15);
     this.health = this.maxHealth;
   }
-
-
 }

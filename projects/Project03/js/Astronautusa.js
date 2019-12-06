@@ -15,7 +15,6 @@ class Astronautusa extends Astronaut {
 
   }
 
-
   // display
   //
   // Draw the prey as an ellipse on the canvas
@@ -34,5 +33,4 @@ class Astronautusa extends Astronaut {
     }
     pop();
   }
-
 }

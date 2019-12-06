@@ -49,7 +49,6 @@ class Asteroid {
     }
   }
 
-
   // display
   //
   // Draw the asteroid
@@ -75,6 +74,4 @@ class Asteroid {
     this.vy = random(1, 10);
     this.health = this.maxHealth;
   }
-
-
 }

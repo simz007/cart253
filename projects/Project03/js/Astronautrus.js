@@ -20,7 +20,6 @@ class Astronautrus extends Astronaut {
 
   }
 
-
   // display
   //
   // Draw the prey as an ellipse on the canvas
@@ -45,9 +44,7 @@ class Astronautrus extends Astronaut {
 
     if (this.visibletimer < -this.visibleduration) {
       this.visibletimer = this.visibleduration
-
     }
-
 
     pop();
   }

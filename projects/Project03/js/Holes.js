@@ -49,7 +49,6 @@ class Holes {
     }
   }
 
-
   // display
   //
   // Draw the holes
@@ -65,16 +64,4 @@ class Holes {
     }
     pop();
   }
-
-  // reset
-  //
-  // reset the black holes
-  reset() {
-    this.y = random(0, width);
-    this.x = 0;
-    this.vx = random(1, 10);
-    this.health = this.maxHealth;
-  }
-
-
 }

@@ -100,9 +100,6 @@ class Alien {
     }
   }
 
-
-
-
   // handleEating
   // Takes an Astronaut object as an argument and checks if the alien
   // overlaps it. If so, reduces the astronaut health and increases
@@ -128,7 +125,6 @@ class Alien {
       }
     }
   }
-
 
   // handleHit
   //Takes an Asteroid object as an argument and checks if the alien
@@ -179,6 +175,7 @@ class Alien {
     }
     pop();
   }
+
   // handleDrink
   //Takes a Life bottle object as an argument and checks if the predator
   // overlaps it. If so,  increases the alien's health to max
@@ -209,7 +206,7 @@ class Alien {
 
   // handleHole
   //Takes a Hole object as an argument and checks if the alien
-  // overlaps it. If so, decrease the alien's health
+  // overlaps it. If so, decrease the alien's health and teleport the alien
 
   handleHole(holes) {
     // Calculate distance from this alien to the holes
@@ -217,7 +214,7 @@ class Alien {
     // Check if the distance is less than their two radius (an overlap)
     if (d < this.radius + holes.radius) {
       // decrease alien's health when in contact
-      this.health -= 5;
+      this.health -= 8;
       // Teleport the alien to a random position
       this.x = random(0, width);
       this.y = random(0, height);

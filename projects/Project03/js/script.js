@@ -70,17 +70,12 @@ let numStar = 100;
 //Empty erray to store the Stars
 let stars = [];
 
-
-
 // Add variables for the sounds
 let gameSound;
 let alienSound;
 let explosionSound;
 let drinkSound;
 let diedSound;
-
-
-
 
 // create the function preload to preload images and sounds
 
@@ -89,7 +84,7 @@ function preload() {
   bgImage = loadImage("assets/images/space.jpg");
   startImg = loadImage("assets/images/StartScreen.png");
   endImg = loadImage("assets/images/endScreen.png");
-  instructionImg = loadImage("assets/images/instruction.jpg");
+  instructionImg = loadImage("assets/images/instruction.png");
 
   // load Alien and Astronauts images
   alienImg = loadImage("assets/images/alien.png");
@@ -123,10 +118,8 @@ function setup() {
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
-  blackHole = new Holes(0, 100, 5, 60, holeImg);
+  blackHole = new Holes(0, 100, 10, 60, holeImg);
   secondHole = new Holes(0, 600, 5, 80, holeImg);
-
-
 
   // Run a for loop numAstrousa times to generate each astronaut and put it in the array
   for (let i = 0; i < numAstrousa; i++) {
@@ -167,8 +160,6 @@ function setup() {
     // Add the new object to the END of our array using push()
     stars.push(newStar);
   }
-
-
 }
 
 // Setting up background sound
@@ -194,17 +185,16 @@ function draw() {
       //Display astronauts eaten by the alien at the bottom of the screen
       textAlign(CENTER, CENTER);
       textFont("Impact");
-      textSize(35);
+      textSize(30);
       fill(255);
-      text("ASTRONAUT EATEN: " + alienPlayer.preyEaten, width / 2, windowHeight - 50);
-
+      text("ASTRONAUT EATEN: " + alienPlayer.preyEaten, width / 2, windowHeight - 30);
+      text("ASTEROIDS DESTROYED: " + alienPlayer.hits, width / 2, windowHeight - 60);
 
       // Handle input for the alien
       alienPlayer.handleInput();
 
       // Move Alien
       alienPlayer.move();
-
 
       // call the function to check if the alien is dead
       alienPlayer.updateHealth();
@@ -239,8 +229,6 @@ function draw() {
       // Display the alien
       alienPlayer.display();
 
-
-
       //Go through every Astronaut element in the array in order by index
       for (let i = 0; i < astronauts.length; i++) {
         // And for each one, move it and display it and handleEating for the alien
@@ -255,7 +243,6 @@ function draw() {
         stars[i].move();
         stars[i].display();
       }
-
 
       // // draw the tree as a Foreground
       // image(treeImg, 0, 0, width, height);
@@ -278,9 +265,7 @@ function energyBar() {
 
   fill(0, 255, 0);
   rect(10, 10, energySize, 25);
-
   pop()
-
 }
 
 // Create an action to allow the game to start and music to play after clicking the mouse
@@ -323,7 +308,8 @@ function resetGame() {
   asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
-
+  blackHole = new Holes(0, 100, 10, 60, holeImg);
+  secondHole = new Holes(0, 600, 5, 80, holeImg);
 
   // reset the health to full and num of prey eaten to 0
   alienPlayer.health = alienPlayer.maxHealth;
