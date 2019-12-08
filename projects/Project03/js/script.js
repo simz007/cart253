@@ -116,7 +116,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   // Creates Alien,Asteroid and life bottle objects
-  alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
+  alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
   asteroid = new Asteroid(200, 0, 5, 40, asteroidImage);
   secondAsteroid = new Asteroid(800, 0, 5, 50, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
