@@ -2,7 +2,9 @@
 // by Simon Zogheib ( Reference code : My project2)
 //
 // Create a Space game where the Alien have to collect astronauts to gain health,
-// Must avoid the astroids and the Ufos(maybe not).
+// Must avoid the astroids and destroy them.
+// be aware of the darck Holes they will make you lose health and teleport you.
+// look for the life bottles they will m ake you gain full health.
 
 
 // Track whether the game is over
@@ -115,8 +117,8 @@ function setup() {
 
   // Creates Alien,Asteroid and life bottle objects
   alienPlayer = new Alien(width / 2, height / 2, 7, 70, alienImg);
-  asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
-  secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
+  asteroid = new Asteroid(200, 0, 5, 40, asteroidImage);
+  secondAsteroid = new Asteroid(800, 0, 5, 50, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
   blackHole = new Holes(0, 100, 10, 60, holeImg);
   secondHole = new Holes(0, 600, 5, 80, holeImg);
@@ -289,7 +291,7 @@ function showGameOver() {
   image(endImg, 0, 0, width, height);
   textSize(50);
   textAlign(LEFT);
-  fill(255);
+  fill(0, 255, 0);
   gameSound.stop();
   // Set up the text to display
   let gameOverText = "YOU DIED\n"; // \n means "new line"
@@ -305,8 +307,8 @@ function resetGame() {
   gameOver = false;
   state = "START";
   alienPlayer = new Alien(width / 2, height / 2, 7, 90, alienImg);
-  asteroid = new Asteroid(200, 0, 5, 30, asteroidImage);
-  secondAsteroid = new Asteroid(800, 0, 5, 40, asteroidImage);
+  asteroid = new Asteroid(200, 0, 5, 40, asteroidImage);
+  secondAsteroid = new Asteroid(800, 0, 5, 50, asteroidImage);
   lifeBottle = new Life(500, 0, 5, 30, lifeImg);
   blackHole = new Holes(0, 100, 10, 60, holeImg);
   secondHole = new Holes(0, 600, 5, 80, holeImg);
